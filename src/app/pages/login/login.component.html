@@ -1,0 +1,27 @@
+<div class="login">
+    <div>
+        <mat-card class="login-card">
+            <mat-card-content>
+                <div class="left">
+                    <img width="200px" height="200px" src="../../../assets/NI_WEB.jpg"/>
+                </div>
+                <div class="right"> 
+                    <div>
+                        <h1 style="font-size: bold;">Login</h1>
+                    </div>
+                    <form [formGroup]="loginForm" (submit)="$event.preventDefault()">
+                        <div>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Employee/Admin Code</mat-label>
+                                <input matInput class="form-control" formControlName="employeeCode" type="text" required/>
+                              </mat-form-field>
+                        </div>
+                    </form>
+                    <button mat-flat-button color="primary" [disabled]="!loginForm.valid" (click)="login()">Login</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        
+    </div>
+
+</div>

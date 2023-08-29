@@ -1,0 +1,50 @@
+.table {
+    width: 100%;
+}
+.container{
+    flex: 1 0 auto;
+}
+::ng-deep .mat-toolbar{
+    z-index: 998;
+    position: relative,
+  }
+  ::ng-deep .mat-tab-group{
+    margin-top:55px ;
+  }
+  
+  ::ng-deep .mat-tab-header{
+        z-index: 999;
+        width:100vw;
+        position: relative  !important;
+        background-color: red !important;
+  }
+  ::ng-deep .mat-tab-body-wrapper{
+      position: relative !important;
+      margin-top:55px;
+  }
+  ::ng-deep .mat-mdc-tab-label-container{
+      margin: 50px;
+  } 
+
+.tabs{
+    margin: 50px;
+}
+
+.rowseparator{
+    border-bottom: 1px solid #AFAFAF;
+    height: 50px;
+}
+.table .tr{
+    border-bottom: 1px solid #AFAFAF;
+    height: 50px;
+}
+
+.assign {
+    color: red;
+    font-weight: bold;
+}
+
+.close {
+    color: green;
+    font-weight: bold;
+}

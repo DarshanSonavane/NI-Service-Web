@@ -1,0 +1,29 @@
+<div class="container">
+    <mat-tab-group class="tabs">
+        <mat-tab label="All Complaints">
+            <table class="table">
+                <th>Date Of Complaint</th>
+                <th>Complaint Type</th>
+                <th>Customer Code</th>
+                <th>Customer Name</th>
+                <th>Machine Type</th>
+                <th>Status</th>
+                <th>Action</th>
+                <tr *ngFor="let complaint of complaintsList" style="text-align: center;" class="rowseparator">
+                    <td>{{ complaint['createdAt']  | dateFilter}}</td>
+                    <td>{{ complaint['serviceRequestId']['complaintType']['name'] }}</td>
+                    <td>{{ complaint['serviceRequestId']['customerId'] ? complaint['serviceRequestId']['customerId']['customerCode'] : '-' }}</td>
+                    <td>{{ complaint['serviceRequestId']['customerId']['customerName'] ? complaint['serviceRequestId']['customerId']['customerName'] : '-' }}</td>
+                    <td>{{ complaint['machineType'] == 0 ? 'Petrol' : 'Disel' }}</td>
+                    <td [ngClass] = "complaint['serviceRequestId']['status'] == 0 ? 'close' : 'assign'">{{ complaint['serviceRequestId']['status'] == 0 ? 'Close' : 'Open' }}</td>
+                    <td *ngIf="complaint['serviceRequestId']['status'] !== '0'">
+                        <button mat-flat-button color="primary" style="margin-left: 10px;" (click)="closeServiceRequest(complaint)">Close</button>
+                    </td>
+                </tr>
+
+            </table>
+        </mat-tab>
+        <!-- <mat-tab label="Open Complaints">Open Complaints</mat-tab> -->
+        <mat-tab label="Close Complaints">Close Complaints</mat-tab> 
+    </mat-tab-group>
+</div>

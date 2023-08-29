@@ -1,0 +1,31 @@
+<div class="assignComplaint">
+    <div>
+        <mat-card class="assign-card">
+            <mat-card-content>
+                <div>
+                    <img width="200px" height="200px" src="../../../assets/NI_WEB.jpg"/>
+                </div>
+                <div> 
+                    <div>
+                        <h1 style="font-size: bold;">Assign Complaint</h1>
+                    </div>
+                    <form [formGroup]="assignForm" (submit)="$event.preventDefault()">
+                        <div>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Select Employee*</mat-label>
+                                <mat-select (valueChange)="onEmployeeSelect($event)">
+                                    <mat-option >Select Employee</mat-option>
+                                    <mat-option *ngFor="let employee of employeeList" [value]="employee._id">{{employee.firstName}} {{employee.lastName}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                    <button [disabled]="!selectedEmployee" mat-flat-button color="primary" (click)="assignComplaint()">Assign</button>
+                    <button style="margin-left: 10px;" mat-flat-button color="warn" (click)="closeDialog()">Close</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+         
+    </div>
+
+</div>
