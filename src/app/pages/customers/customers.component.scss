@@ -1,0 +1,58 @@
+.customer-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #e1e1e1;
+    margin-top: 60px;
+}
+
+.customer-card{
+    width: 100%;
+}
+
+.left{
+    width: 50%;
+    min-height: 200px;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.right{
+    width: 50%;
+    min-height: 200px;
+    float: left;
+}
+
+.full-width{
+    width: 200px;
+    margin-right: 10px;
+}
+
+.table {
+    width: 100%;
+}
+
+.search-container{
+    width: 384px;
+    height: 56px;
+    right:38em;
+    margin-right: 10px;
+    float: right;
+    margin-top: 15px;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+  }
+  
+.mat-mdc-row:hover .mat-mdc-cell {
+    border-color: currentColor;
+}
+  
+.demo-row-is-clicked {
+    font-weight: bold;
+}

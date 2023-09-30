@@ -1,0 +1,40 @@
+<div class="container">
+    <h2 style="margin: 20px;">Service Request Graphics</h2>
+    <mat-card class="pie-chart-card">
+        <mat-card-content>  
+            <canvas id="myChart">{{chart}}</canvas>
+        </mat-card-content>
+    </mat-card>
+    <div style="margin-top: 50px;">
+        <div class="row card-row">
+            <mat-card class="example-card" *ngFor="let employee of employeeList" (click)="goToEmployeeDetails(employee)">
+                <mat-card-header>
+                  <div mat-card-avatar class="example-header-image"></div>
+                  <mat-card-title>{{employee.firstName}} {{employee.lastName}}</mat-card-title>
+                  <mat-card-subtitle>{{employee.phone}}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="../../../assets/man-dummy.jpeg" alt="Photo of a Employee">
+                <mat-card-content>
+                  <div style="font-weight: bold;">Email : {{employee.email}}</div>
+                  <div style="font-weight: bold;">DOB : {{employee.dob}}</div>
+                  <div style="font-weight: bold;">Gender : {{employee.gender == '1' ? 'Male' : 'Female'}}</div>
+                </mat-card-content>
+            </mat-card>
+            <!-- <mat-card class="example-card">
+                <mat-card-header>
+                  <div mat-card-avatar class="example-header-image"></div>
+                  <mat-card-title>Shiba Inu</mat-card-title>
+                  <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                  <p>
+                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                    bred for hunting.
+                  </p>
+                </mat-card-content>
+            </mat-card> -->
+        </div>
+    </div>
+</div>

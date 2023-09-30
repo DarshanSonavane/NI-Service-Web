@@ -37,7 +37,13 @@ export class LoginComponent implements OnInit {
           if(res['data']){
             this.toast.success("Login Success!!");
             localStorage.setItem("userDetails",JSON.stringify(res['data']));
-            res['data']['role'] == '0' ? this.router.navigateByUrl('/complaints') : this.router.navigateByUrl('/employee-complaints');
+            if(res['data']['role'] == '0'){
+              this.router.navigateByUrl('/dashboard')
+              localStorage.setItem('userRole','ADMIN')
+            }else {
+              localStorage.setItem('userRole','EMPLOYEE');
+              this.router.navigateByUrl('/employee-complaints')
+            }
           }else {
             // show toast here
             this.loader.closeLoadingIndicator();

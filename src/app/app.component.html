@@ -310,7 +310,15 @@
     src="../assets/NI_WEB.jpg"
   />
   <span style="font-weight: bold;font-size: medium;">Welcome ,  NI Service Engineering PVT.LTD</span>
-    <!-- <div class="spacer"></div> -->
+  <div class="spacer"></div>
+  
+  <div style="padding: 20px;" *ngIf="newRouter.url != '/login'">
+    <span style="margin-left: 20px;font-weight: bold;" (click)="goToDashboard()">Dashboard</span>
+    <span style="margin-left: 20px;font-weight: bold;" (click)="goToComplaints()">Complaints</span>
+    <span style="margin-left: 20px;font-weight: bold;" (click)="goToEmployee()">Employee</span>
+    <span style="margin-left: 20px;font-weight: bold;" (click)="goToCustomers()">Customers</span>
+    <span style="margin-left: 20px;font-weight: bold;" (click)="logout()">Logout</span>
+  </div>
 </div>
 
 <div class="content" role="main" style="margin: 0px;"></div>

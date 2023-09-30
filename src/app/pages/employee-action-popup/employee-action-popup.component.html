@@ -1,0 +1,33 @@
+<div class="complaint-action">
+    <div>
+        <mat-card class="assign-card">
+            <mat-card-content>
+                <div>
+                    <img width="200px" height="200px" src="../../../assets/NI_WEB.jpg"/>
+                </div>
+                <div> 
+                    <div>
+                        <h1 style="font-size: bold;">Complaint Status</h1>
+                    </div>
+                    <form [formGroup]="statusForm" (submit)="$event.preventDefault()">
+                        <div>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Select Status</mat-label>
+                                <mat-select (valueChange)="onStatusChange($event)" class="form-control" formControlName="status" required>
+                                    <mat-option >Select Status</mat-option>
+                                    <mat-option *ngFor="let status of statusList" [value]="status._id">{{status.name}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>Feedback</mat-label>
+                                <input matInput class="form-control" [(ngModel)]="feedback" formControlName="feedback" type="text" required/>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                    <button [disabled]="!statusForm.valid" mat-flat-button color="primary" (click)="updateStatusFeedback()">Save & Close</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+         
+    </div>
+</div>

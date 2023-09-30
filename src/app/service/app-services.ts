@@ -4,9 +4,8 @@ import { Injectable } from '@angular/core';
 @Injectable() 
 export class AppServices{
     BASE_URL = "http://localhost:3000";
-    constructor(private http : HttpClient){
-
-    }
+    // BASE_URL = "http://16.170.250.91:3000";
+    constructor(private http : HttpClient){}
 
     getAllComplaints = (userDetails : any) => {
         let url = "";
@@ -38,5 +37,35 @@ export class AppServices{
     closeComplaint  = (data : any) =>{
         let url = this.BASE_URL + '/close-service-request'
         return this.http.post(url,data);
+    }
+
+    getAdminDashboardDetails = () => {
+        let url = this.BASE_URL + '/get-admin-dashboard-details';
+        return this.http.get(url);
+    }
+
+    saveEmployee = (data:any) =>{
+        let url = this.BASE_URL + '/create-employee';
+        return this.http.post(url,data)
+    }
+
+    deleteEmployee = (id : any)=>{
+        let url = this.BASE_URL + '/delete-employee?id='+id;
+        return this.http.get(url);
+    }
+
+    updateServiceRequest = (obj:any) =>{
+        let url = this.BASE_URL + '/update-service-request';
+        return this.http.post(url,obj)
+    }
+
+    getCustomerList = () =>{
+        let url = this.BASE_URL + '/get-all-customers';
+        return this.http.get(url);
+    }
+
+    createUpdateCustomer = (obj:any) =>{
+        let url = this.BASE_URL + '/create-update-customer-details';
+        return this.http.post(url,obj);
     }
 }

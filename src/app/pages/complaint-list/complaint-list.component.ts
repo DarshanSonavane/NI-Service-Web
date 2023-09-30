@@ -1,3 +1,4 @@
+import { ComplaintDetailsPopupComponent } from './../complaint-details-popup/complaint-details-popup.component';
 import { AssignCompliantPopupComponent } from './../assign-compliant-popup/assign-compliant-popup.component';
 import { DateFilterPipe } from './../../pipes/date-filter.pipe';
 import { AppServices } from './../../service/app-services';
@@ -13,6 +14,7 @@ import { LoadingIndicatorService } from './../../service/loading-indicator.servi
 })
 export class ComplaintListComponent {
   complaintsList = [];
+  closeComplaintsList = [];
   userDetails:any
   constructor(private service : AppServices , private dialog : MatDialog , private toast : ToastrService , private loader : LoadingIndicatorService){
     this.userDetails  = localStorage.getItem('userDetails') ? localStorage.getItem('userDetails') : null
@@ -26,6 +28,7 @@ export class ComplaintListComponent {
       this.service.getAllComplaints(userDetails).subscribe((res : any)=>{
         this.loader.closeLoadingIndicator();
         this.complaintsList = res.data;
+        this.closeComplaintsList = res.data.filter(data=> data.status == '0' || data.status == 0);
       })
     }catch(err){
       console.log(err);
@@ -68,6 +71,24 @@ export class ComplaintListComponent {
           this.toast.success("Service Request Closed Successfully!!");
         }
       })
+    }catch(err){
+      console.log(err);
+    }
+  }
+
+  openDetailsPopup = (complaint:any) =>{
+    try{
+      let dialgoRef = this.dialog.open(ComplaintDetailsPopupComponent , {
+        data: {
+          complaint : complaint
+        }
+      }).afterClosed().subscribe((result : any)=>{
+        // dialgoRef = undefined;
+        if(result == 'close'){
+          this.getAllComplaints(JSON.parse(this.userDetails));
+          this.dialog.closeAll();
+        }
+      });
     }catch(err){
       console.log(err);
     }

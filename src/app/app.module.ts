@@ -24,6 +24,18 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SpinningIndicatorComponent } from './pages/spinning-indicator/spinning-indicator.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { EmployeeComponent } from './pages/employee/employee.component';
+import { CreateEmployeePopupComponent } from './pages/create-employee-popup/create-employee-popup.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { EmployeeActionPopupComponent } from './pages/employee-action-popup/employee-action-popup.component';
+import { CustomersComponent } from './pages/customers/customers.component';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { ComplaintDetailsPopupComponent } from './pages/complaint-details-popup/complaint-details-popup.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +45,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     DateFilterPipe,
     EmployeeCompliantListComponent,
     AssignCompliantPopupComponent,
-    SpinningIndicatorComponent
+    SpinningIndicatorComponent,
+    DashboardComponent,
+    EmployeeComponent,
+    CreateEmployeePopupComponent,
+    EmployeeActionPopupComponent,
+    CustomersComponent,
+    ComplaintDetailsPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +68,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ToastrModule.forRoot(),
     MatSelectModule,
     MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatTableModule
   ],
   providers: [AppServices , LoadingIndicatorService],
   bootstrap: [AppComponent]

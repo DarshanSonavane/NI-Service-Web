@@ -1,0 +1,134 @@
+<div class="customer-container">
+    <div>
+        <mat-card class="customer-card">
+            <mat-card-content>
+                <div>
+                    <div class="left">
+                        <img width="200px" height="200px" src="../../../assets/NI_WEB.jpg"/>
+                    </div>
+                    <div class="right"> 
+                        <div style="margin-top: 20px;">
+                            <h1 style="font-size: bold;">Create / Update Customer's</h1>
+                        </div>
+                        <form [formGroup]="customerForm" (submit)="$event.preventDefault()">
+                            <div>
+                                <mat-form-field class="full-width">
+                                    <mat-label>Customer Code</mat-label>
+                                    <input matInput class="form-control" formControlName="customerCode" type="text" required/>
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                    <mat-label>Customer Name</mat-label>
+                                    <input matInput class="form-control" formControlName="customerName" type="text" required/>
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                    <mat-label>City</mat-label>
+                                    <input matInput class="form-control" formControlName="city" type="text" required/>
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput class="form-control" formControlName="email" type="email" required/>
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                    <mat-label>Mobile No.</mat-label>
+                                    <input matInput class="form-control" formControlName="phone" type="number" required/>
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                    <mat-label>GST No.</mat-label>
+                                    <input matInput class="form-control" formControlName="gstNo" type="text"/>
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                    <mat-label>Amc Date</mat-label>
+                                    <input matInput [matDatepicker]="datepicker" formControlName="amcDue">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #datepicker>
+                                        <mat-datepicker-actions>
+                                        <button mat-button matDatepickerCancel>Cancel</button>
+                                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                                        </mat-datepicker-actions>
+                                    </mat-datepicker>
+                                </mat-form-field>
+                                <input class="form-control" formControlName="customerId" type="hidden"/>
+                                
+                            </div>
+                        </form>
+                        <button mat-flat-button color="primary" [disabled]="!customerForm.valid" (click)="createUpdateCustomer()">Save Customer</button>
+                        <button mat-flat-button color="warn" (click)="reset()" style="margin-left: 20px;">Reset</button>
+                    </div>
+                    <div class="row">
+                        <div class="search-container">
+                            <mat-form-field class="row">
+                                <mat-label>Search Customer</mat-label>
+                                <input matInput class="form-control" type="text" (keyup)="applyFilter($event)"/>
+                            </mat-form-field>
+                            <mat-icon aria-hidden="false" aria-label="Example search icon" fontIcon="search"></mat-icon>
+                        </div>
+                    </div>
+                    <div class="mat-elevation-z8">
+                        <h2 style="margin-left: 20px;margin-top: 20px;">Customer List</h2>
+                        <table mat-table [dataSource]="dataSource">
+                      
+                          <!-- Position Column -->
+                          <ng-container matColumnDef="customerCode">
+                            <th mat-header-cell *matHeaderCellDef> Customer Code </th>
+                            <td mat-cell *matCellDef="let element"> {{element.customerCode}} </td>
+                          </ng-container>
+                      
+                          <!-- Name Column -->
+                          <ng-container matColumnDef="customerName">
+                            <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+                            <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+                          </ng-container>
+                      
+                          <!-- Weight Column -->
+                          <ng-container matColumnDef="city">
+                            <th mat-header-cell *matHeaderCellDef> City </th>
+                            <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+                          </ng-container>
+                      
+                          <!-- Symbol Column -->
+                          <ng-container matColumnDef="email">
+                            <th mat-header-cell *matHeaderCellDef> Email </th>
+                            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                          </ng-container>
+
+                          <!-- Symbol Phone -->
+                          <ng-container matColumnDef="phone">
+                            <th mat-header-cell *matHeaderCellDef> Mobile No. </th>
+                            <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="gstNo">
+                            <th mat-header-cell *matHeaderCellDef> GST No, </th>
+                            <td mat-cell *matCellDef="let element"> {{element.gstNo}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="amcDue">
+                            <th mat-header-cell *matHeaderCellDef> AMC Due </th>
+                            <td mat-cell *matCellDef="let element"> {{element.amcDue}} </td>
+                          </ng-container>
+
+                          <!-- <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef> Action </th>
+                            <td mat-cell> 
+                                <button mat-flat-button color="primary" >Edit</button>
+                            </td>
+                          </ng-container> -->
+                      
+                          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                          <tr mat-row [class.demo-row-is-clicked]="clickedRows.has(row)" (click)="onRowClick(row)" *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                      
+                        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                                       showFirstLastButtons
+                                       aria-label="Select page of customer elements">
+                        </mat-paginator>
+                      </div>
+                </div>
+                
+            </mat-card-content>
+        </mat-card>
+        
+    </div>
+
+</div>

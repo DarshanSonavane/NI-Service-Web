@@ -1,0 +1,81 @@
+<div class="employee-container">
+    <div>
+        <mat-card class="employee-card">
+            <mat-card-content>
+                <div>
+                    <div class="left">
+                        <img width="200px" height="200px" src="../../../assets/NI_WEB.jpg"/>
+                    </div>
+                    <div class="right"> 
+                        <div>
+                            <h1 style="font-size: bold;">Employee</h1>
+                        </div>
+                        <form [formGroup]="employeeForm" (submit)="$event.preventDefault()">
+                            <div>
+                                <mat-form-field class="full-width">
+                                    <mat-label>First Name</mat-label>
+                                    <input matInput class="form-control" formControlName="firstName" type="text" required/>
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                    <mat-label>Last Name</mat-label>
+                                    <input matInput class="form-control" formControlName="lasttName" type="text" required/>
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput class="form-control" formControlName="email" type="email" required/>
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                    <mat-label>Mobile No.</mat-label>
+                                    <input matInput class="form-control" formControlName="phone" type="number" required/>
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                    <mat-label>Choose a date</mat-label>
+                                    <input matInput [matDatepicker]="datepicker" formControlName="dob">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #datepicker>
+                                        <mat-datepicker-actions>
+                                        <button mat-button matDatepickerCancel>Cancel</button>
+                                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                                        </mat-datepicker-actions>
+                                    </mat-datepicker>
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                    <mat-label>Select Gender*</mat-label>
+                                    <mat-select (valueChange)="onGenderSelect($event)" formControlName="gender">
+                                        <mat-option *ngFor="let gender of genderList" [value]="gender.id">{{gender.name}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </form>
+                        <button mat-flat-button color="primary" [disabled]="!employeeForm.valid" (click)="saveEmployee()">Save Employee</button>
+                    </div>
+                    <h2 style="margin-left: 50px;margin-top: 20px;">Employee List</h2>
+                    <table style="width: 100%;margin-top: 10px;">
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>DOB</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Action</th>
+                        <tbody style="margin: 10px;">
+                            <tr style="text-align: center;" *ngFor="let employee of employeeList">
+                                <td>{{employee.firstName}}</td>
+                                <td>{{employee.lastName}}</td>
+                                <td>{{employee.dob}}</td>
+                                <td>{{employee.email}}</td>
+                                <td>{{employee.phone}}</td>
+                                <td>
+                                    <button mat-flat-button color="warn" (click)="deleteEmployee(employee)">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </mat-card-content>
+        </mat-card>
+        
+    </div>
+
+</div>

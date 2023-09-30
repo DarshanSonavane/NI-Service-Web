@@ -1,0 +1,32 @@
+.container{
+    margin-top: 60px;
+    background: #e1e1e1;
+}
+
+.view-complaints-button{
+    float: right;
+    margin: 30px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.example-card {
+    max-width: 400px;
+    margin: 20px;
+}
+
+.pie-chart-card{
+    max-width: 600px;
+    margin: 20px;
+}
+  
+.example-header-image {
+    background-image: url('../../../assets/man-dummy.jpeg');
+    background-size: cover;
+}
+
+.card-row{
+    display: flex;
+}

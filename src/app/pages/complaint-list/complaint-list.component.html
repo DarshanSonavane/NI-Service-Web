@@ -1,32 +1,53 @@
 <div class="container">
     <mat-tab-group class="tabs">
         <mat-tab label="All Complaints">
-            <table class="table">
+            <table class="table" *ngIf="complaintsList.length > 0">
                 <th>Date Of Complaint</th>
                 <th>Complaint Type</th>
                 <th>Customer Code</th>
                 <th>Customer Name</th>
                 <th>Machine Type</th>
-                <th>Assigned To</th>
                 <th>Status</th>
+                <!-- <th>Updated Date</th> -->
                 <th>Action</th>
-                <tr *ngFor="let complaint of complaintsList" style="text-align: center;" class="rowseparator">
+                <tr *ngFor="let complaint of complaintsList" style="text-align: center;" class="rowseparator" (click)="openDetailsPopup(complaint)">
                     <td>{{ complaint['createdAt']  | dateFilter}}</td>
                     <td>{{ complaint['complaintType']['name'] }}</td>
                     <td>{{ complaint['customerId'] ? complaint['customerId']['customerCode'] : '-' }}</td>
                     <td>{{ complaint['customerId']['customerName'] ? complaint['customerId']['customerName'] : '-' }}</td>
                     <td>{{ complaint['machineType'] == 0 ? 'Petrol' : 'Disel' }}</td>
-                    <td>{{ complaint['assignedTo'] ? complaint['assignedTo']['firstName'] + ' ' + complaint['assignedTo']['lastName']: '-' }}</td>
                     <td [ngClass] = "complaint['status'] == 0 ? 'close' : 'assign'">{{ complaint['status'] == 0 ? 'Close' : 'Open' }}</td>
                     <td>
-                        <button *ngIf="complaint['status'] == '1'" mat-flat-button color="warn" (click)="assign(complaint)">Assign</button>
+                        <button *ngIf="complaint['status'] == '1' && complaint['status'] !== '2'" mat-flat-button color="warn" (click)="assign(complaint)">Assign</button>
                         <button *ngIf="complaint['status'] == '1' || complaint['status'] == '2'" mat-flat-button color="primary" style="margin-left: 10px;" (click)="closeServiceRequest(complaint)">Close</button>
                     </td>
                 </tr>
-
             </table>
+            <mat-card *ngIf="complaintsList.length == 0">
+                <h1>No Complaints Found!</h1> 
+            </mat-card>
         </mat-tab>
         <!-- <mat-tab label="Open Complaints">Open Complaints</mat-tab> -->
-        <mat-tab label="Close Complaints">Close Complaints</mat-tab>
+        <mat-tab label="Close Complaints">
+            <table class="table" *ngIf="closeComplaintsList.length > 0">
+                <th>Date Of Complaint</th>
+                <th>Complaint Type</th>
+                <th>Customer Code</th>
+                <th>Customer Name</th>
+                <th>Machine Type</th>
+                <th>Status</th>
+                <tr *ngFor="let complaint of closeComplaintsList" style="text-align: center;" class="rowseparator" (click)="openDetailsPopup(complaint)">
+                    <td>{{ complaint['createdAt']  | dateFilter}}</td>
+                    <td>{{ complaint['complaintType']['name'] }}</td>
+                    <td>{{ complaint['customerId'] ? complaint['customerId']['customerCode'] : '-' }}</td>
+                    <td>{{ complaint['customerId']['customerName'] ? complaint['customerId']['customerName'] : '-' }}</td>
+                    <td>{{ complaint['machineType'] == 0 ? 'Petrol' : 'Disel' }}</td>
+                    <td [ngClass] = "complaint['status'] == 0 ? 'close' : 'assign'">{{ complaint['status'] == 0 ? 'Close' : 'Open' }}</td>
+                </tr>
+            </table>
+            <mat-card *ngIf="closeComplaintsList.length == 0">
+                <h1>No Close Complaints Found!</h1> 
+            </mat-card>
+        </mat-tab>
     </mat-tab-group>
 </div>

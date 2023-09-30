@@ -1,0 +1,30 @@
+.employee-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #e1e1e1;
+}
+
+.employee-card{
+    width: 100%;
+}
+
+.left{
+    width: 50%;
+    min-height: 200px;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.right{
+    width: 50%;
+    min-height: 200px;
+    float: left;
+}
+
+.full-width{
+    width: 200px;
+    margin-right: 10px;
+}
