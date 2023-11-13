@@ -46,7 +46,7 @@ export class ComplaintDetailsPopupComponent implements OnInit {
           this.detailsArr.push(obj);
         }else if(key == "assignedTo"){
           obj['key'] = "Assigned To"
-          obj['value'] = complaintsObj[key]['firstName'] + " " + complaintsObj[key]['LasttName'];
+          obj['value'] = complaintsObj[key]['firstName'] + " " + complaintsObj[key]['lastName'];
           this.detailsArr.push(obj);
         }else if(key == "status"){
           obj['key'] = "Status"
