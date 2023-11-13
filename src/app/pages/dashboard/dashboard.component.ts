@@ -16,6 +16,7 @@ export class DashboardComponent implements AfterViewInit {
   chart:any;
   data : any[] = [];
   employeeList : any[] = [];
+  showChart : boolean = false;
   constructor(private appService : AppServices , private cdRef : ChangeDetectorRef , private router :Router , private loader : LoadingIndicatorService){
     this.getDashboardDetails();
     this.getEmployee();
@@ -28,6 +29,7 @@ export class DashboardComponent implements AfterViewInit {
         if(res){
           this.loader.closeLoadingIndicator();
           this.data.push(res);
+          this.showChart = this.data.length > 0 && this.data[0]["totalComplaints"] > 0 ? true : false ;
           this.realData.push(this.data[0]["totalComplaints"]);
           this.realData.push(this.data[0]["openComplaints"]);
           this.realData.push(this.data[0]["closeComplaints"]);

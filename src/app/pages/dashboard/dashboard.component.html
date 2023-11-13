@@ -2,7 +2,8 @@
     <h2 style="margin: 20px;">Service Request Graphics</h2>
     <mat-card class="pie-chart-card">
         <mat-card-content>  
-            <canvas id="myChart">{{chart}}</canvas>
+          <canvas id="myChart">{{chart}}</canvas>
+          <h2 *ngIf="!showChart">No Service Request Raised!</h2>
         </mat-card-content>
     </mat-card>
     <div style="margin-top: 50px;">
