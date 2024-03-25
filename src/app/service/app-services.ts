@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable() 
 export class AppServices{
-    // BASE_URL = "http://localhost:3000";
-    BASE_URL = "http://16.170.250.91:3000";
+    BASE_URL = "http://localhost:3000";
+    // BASE_URL = "http://16.170.250.91:3000";
     constructor(private http : HttpClient){}
 
     getAllComplaints = (userDetails : any) => {
@@ -66,6 +66,16 @@ export class AppServices{
 
     createUpdateCustomer = (obj:any) =>{
         let url = this.BASE_URL + '/create-update-customer-details';
+        return this.http.post(url,obj);
+    }
+
+    getCustomerVisitCount = (obj:any) =>{
+        let url = this.BASE_URL + '/get-customer-service-request-count';
+        return this.http.post(url,obj);
+    }
+
+    resetEmploteePassword = (obj:any)=>{
+        let url = this.BASE_URL + '/update-employee-password';
         return this.http.post(url,obj);
     }
 }

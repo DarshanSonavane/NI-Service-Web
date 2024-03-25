@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup , FormBuilder , Validators , FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
+import { ResetPasswordPopupComponent } from '../reset-password-popup/reset-password-popup.component';
 
 
 @Component({
@@ -13,14 +15,15 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({})
-  constructor(private formBuilder : FormBuilder , private router : Router , private appService : AppServices , private toast : ToastrService , private loader : LoadingIndicatorService){
+  constructor(private formBuilder : FormBuilder , private router : Router , private appService : AppServices , private toast : ToastrService , private loader : LoadingIndicatorService , private dialog : MatDialog){
     console.log("Inside Login");
   }
 
   ngOnInit(){
 
     this.loginForm = this.formBuilder.group({
-      employeeCode : new FormControl('',[Validators.required])
+      employeeCode : new FormControl('',[Validators.required]),
+      password : new FormControl('',[Validators.required])
     })
   }
 
@@ -31,6 +34,7 @@ export class LoginComponent implements OnInit {
         let obj : any = {};
         obj['id'] = this.loginForm.controls['employeeCode'].value;
         obj['type'] = "1";
+        obj['password'] = this.loginForm.controls['password'].value;
         console.log("Obj", obj);
         this.appService.login(obj).subscribe((res : any)=>{
           this.loader.closeLoadingIndicator();
@@ -55,6 +59,20 @@ export class LoginComponent implements OnInit {
       }
     }catch(err){
       console.log(err)
+    }
+  }
+
+  resetPassword(){
+    try{
+      let dialgoRef = this.dialog.open(ResetPasswordPopupComponent , {
+      }).afterClosed().subscribe((result : any)=>{
+        // dialgoRef = undefined;
+        if(result == 'reset'){
+          this.dialog.closeAll();
+        }
+      });
+    }catch(err){
+      console.log(err);
     }
   }
 }

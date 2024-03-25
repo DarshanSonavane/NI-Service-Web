@@ -3,6 +3,7 @@ import { Component , AfterViewInit , ChangeDetectorRef } from '@angular/core';
 import { Chart , ChartType} from 'chart.js/auto';
 import { Router } from '@angular/router';
 import { LoadingIndicatorService } from './../../service/loading-indicator.service';
+import { FormGroup , FormBuilder , Validators , FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +18,10 @@ export class DashboardComponent implements AfterViewInit {
   data : any[] = [];
   employeeList : any[] = [];
   showChart : boolean = false;
-  constructor(private appService : AppServices , private cdRef : ChangeDetectorRef , private router :Router , private loader : LoadingIndicatorService){
+  customerForm: FormGroup = new FormGroup({})
+  visitCount:any;
+  totalVisitCount : number = 8;
+  constructor(private appService : AppServices , private cdRef : ChangeDetectorRef , private router :Router , private loader : LoadingIndicatorService , private formBuilder : FormBuilder){
     this.getDashboardDetails();
     this.getEmployee();
   }
@@ -99,5 +103,33 @@ export class DashboardComponent implements AfterViewInit {
     }catch(err){
       console.log(err);
     }
-  }  
+  }
+
+  ngOnInit(){
+    this.customerForm = this.formBuilder.group({
+      customerCode : new FormControl('',[Validators.required]),
+    })
+  }
+
+  getCustomerVisits(){
+    this.loader.showLoadingIndicator();
+    if(this.customerForm.valid){
+      let obj : any = {};
+        obj['customerCode'] = this.customerForm.controls['customerCode'].value;
+        this.appService.getCustomerVisitCount(obj).subscribe((res : any)=>{
+          this.loader.closeLoadingIndicator();
+          if(res['count']){
+            this.visitCount = res['count'];
+          }else {
+            // show toast here
+            this.loader.closeLoadingIndicator();
+          }
+        })
+    }
+  }
+
+  reset() {
+    this.visitCount = null;
+    this.customerForm.controls['customerCode'].setValue('');
+  }
 }
