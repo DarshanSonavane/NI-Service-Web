@@ -42,6 +42,9 @@ export class ResetPasswordPopupComponent {
             this.toast.success("Password updated successfully!");
             this.dialogRef.close('reset');
           }
+        },(error : any)=>{
+          this.loader.closeLoadingIndicator();
+          this.toast.error("Validate Entered Employee Code!");
         })
       }else {
         this.loader.closeLoadingIndicator();
