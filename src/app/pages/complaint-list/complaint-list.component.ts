@@ -6,6 +6,9 @@ import { Component , ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { LoadingIndicatorService } from './../../service/loading-indicator.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-complaint-list',
@@ -16,6 +19,10 @@ export class ComplaintListComponent {
   complaintsList = [];
   closeComplaintsList = [];
   userDetails:any
+  dataSource :any ;
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+  excelData:any;
   constructor(private service : AppServices , private dialog : MatDialog , private toast : ToastrService , private loader : LoadingIndicatorService){
     this.userDetails  = localStorage.getItem('userDetails') ? localStorage.getItem('userDetails') : null
     this.getAllComplaints(JSON.parse(this.userDetails));
@@ -29,6 +36,7 @@ export class ComplaintListComponent {
         this.loader.closeLoadingIndicator();
         this.complaintsList = res.data;
         this.closeComplaintsList = res.data.filter(data=> data.status == '0' || data.status == 0);
+        this.excelData = this.prepareExcelData();
       })
     }catch(err){
       console.log(err);
@@ -93,8 +101,47 @@ export class ComplaintListComponent {
       console.log(err);
     }
   }
-  
+
+  exportExcel() {
+    const workSheet = XLSX.utils.json_to_sheet(this.excelData);
+    const workBook: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workBook, workSheet, 'SheetName');
+    XLSX.writeFile(workBook, 'complaintList.xlsx');
+  }
+
+  prepareExcelData(){
+    let excelDataArr = []
+    for(var i = 0 ; i < this.complaintsList.length ; i++){
+      let d = this.complaintsList[i];
+      let obj = {}
+      obj['Date Of Complaint'] = this.convertDate(d.createdAt);
+      obj['Complaint Status'] = d.status == '0' ? 'Close' : 'Open';
+      obj['Machine Type'] = d.machineType ? d.machineType == '0' ? 'Petrol' : 'Disel' : '-';
+      obj['Complaint Type'] = d.complaintType.name;
+      obj['Customer Code'] = d.customerId ? d.customerId.customerCode : '-';
+      obj['Customer Name'] = d.customerId && d.customerId.customerName ? d.customerId.customerName : '-';
+      obj['Employee Feedback'] = d.employeeFeedback ? d.employeeFeedback : '-';
+      obj['Customer Feedback'] = d.ratings && d.ratings.feedback ? d.ratings.feedback : '-'
+      excelDataArr.push(obj);
+    }
+
+    return excelDataArr;
+  }
+
+  convertDate(createdDate : any){
+    const monthNames = ["Jan" , "Feb" , "Mar" , "Apr" , "May" , "Jun" , "Jul" , "Aug" , "Sep" , "Oct" , "Nov" , "Dec"];
+
+    if(createdDate){
+      const newDate = new Date(createdDate);
+      console.log("newDate",newDate);
+      const formattedDate = newDate.getDate() + " " + monthNames[newDate.getMonth()] + " " + newDate.getFullYear();
+      return formattedDate;
+    }else {
+      return '-';
+    }
+  }
 }
+
 
 
 

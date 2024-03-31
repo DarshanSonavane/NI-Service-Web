@@ -1,6 +1,7 @@
 <div class="container">
     <mat-tab-group class="tabs">
         <mat-tab label="All Complaints">
+            <button *ngIf="complaintsList.length > 0" mat-flat-button color="primary" style="margin-left: 10px;" (click)="exportExcel()">Download</button>
             <table class="table" *ngIf="complaintsList.length > 0">
                 <th>Date Of Complaint</th>
                 <th>Complaint Type</th>
@@ -8,7 +9,6 @@
                 <th>Customer Name</th>
                 <th>Machine Type</th>
                 <th>Status</th>
-                <!-- <th>Updated Date</th> -->
                 <th>Action</th>
                 <tr *ngFor="let complaint of complaintsList" style="text-align: center;" class="rowseparator">
                     <td (click)="openDetailsPopup(complaint)">{{ complaint['createdAt']  | dateFilter}}</td>
@@ -23,6 +23,7 @@
                     </td>
                 </tr>
             </table>
+            
             <mat-card *ngIf="complaintsList.length == 0">
                 <h1>No Complaints Found!</h1> 
             </mat-card>

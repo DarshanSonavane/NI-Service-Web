@@ -113,4 +113,5 @@ export interface CustomerElement {
   phone: string;
   email: string;
   amcDue: string;
+  gstNo:string
 }
