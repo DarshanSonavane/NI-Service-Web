@@ -18,7 +18,8 @@
                     <td (click)="openDetailsPopup(complaint)">{{ complaint['machineType'] == 0 ? 'Petrol' : 'Disel' }}</td>
                     <td (click)="openDetailsPopup(complaint)" [ngClass] = "complaint['status'] == 0 ? 'close' : 'assign'">{{ complaint['status'] == 0 ? 'Close' : 'Open' }}</td>
                     <td>
-                        <button *ngIf="complaint['status'] == '1' && complaint['status'] !== '2'" mat-flat-button color="warn" (click)="assign(complaint)">Assign</button>
+                        <button *ngIf="complaint['status'] == '1' && complaint['status'] !== '2'" mat-flat-button color="warn" (click)="assign(complaint,false)">Assign</button>
+                        <button *ngIf="complaint['status'] == '2'" mat-flat-button color="accent" style="margin-left: 10px;" (click)="assign(complaint,true)">Re Assign</button>
                         <button *ngIf="complaint['status'] == '1' || complaint['status'] == '2'" mat-flat-button color="primary" style="margin-left: 10px;" (click)="closeServiceRequest(complaint)">Close</button>
                     </td>
                 </tr>

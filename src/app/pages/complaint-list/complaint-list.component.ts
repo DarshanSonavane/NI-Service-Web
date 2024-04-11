@@ -47,11 +47,12 @@ export class ComplaintListComponent {
     return 0;
   }
 
-  assign = (complaint:any) =>{
+  assign = (complaint:any , isReAssign : any) =>{
     try{
       let dialgoRef = this.dialog.open(AssignCompliantPopupComponent , {
         data: {
-          selectedServiceRequest : complaint._id
+          selectedServiceRequest : complaint._id,
+          isReassign : isReAssign
         }
       }).afterClosed().subscribe((result : any)=>{
         // dialgoRef = undefined;

@@ -26,6 +26,7 @@ export class EmployeeCompliantListComponent {
       this.service.getAllComplaints(userDetails).subscribe((res : any)=>{
         this.loader.closeLoadingIndicator();
         this.complaintsList = res.data;
+        console.log('complaintsList' , this.complaintsList);
         this.closeComplaintsList = res.data.filter(data=> data.serviceRequestId.status == '0' || data.serviceRequestId.status == 0);
       })
     }catch(err){

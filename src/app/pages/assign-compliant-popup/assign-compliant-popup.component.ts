@@ -43,20 +43,33 @@ export class AssignCompliantPopupComponent {
   assignComplaint = () =>{
     try{
       console.log("selectedValue====",this.selectedEmployee);
-      console.log("selectedValue====",this.config['selectedServiceRequest']);
+      console.log("selectedValue====",this.config['selectedServiceRequest'] , this.config["isReassign "]);
       this.loader.showLoadingIndicator();
       let data : any = {};
       data['employeeId'] = this.selectedEmployee;
       data['complaintId'] = this.config['selectedServiceRequest']
-      this.service.assignCompliant(data).subscribe((res:any)=>{
-        if(res){
-          this.loader.closeLoadingIndicator();
-          this.dialogRef.close('assigned');
-          this.toast.success("Service Request Assigned To Employee Successfully!!");
-        }else {
-          this.toast.error("Something went wrong!!");
-        }
-      })
+      if(!this.config["isReassign"]){
+        this.service.assignCompliant(data).subscribe((res:any)=>{
+          if(res){
+            this.loader.closeLoadingIndicator();
+            this.dialogRef.close('assigned');
+            this.toast.success("Service Request Assigned To Employee Successfully!!");
+          }else {
+            this.toast.error("Something went wrong!!");
+          }
+        })
+      }else {
+        this.service.reAssignCompliant(data).subscribe((res:any)=>{
+          if(res){
+            this.loader.closeLoadingIndicator();
+            this.dialogRef.close('assigned');
+            this.toast.success("Service Request Assigned To Employee Successfully!!");
+          }else {
+            this.toast.error("Something went wrong!!");
+          }
+        })
+      }
+      
     }catch(err){
       console.log(err);
     }
