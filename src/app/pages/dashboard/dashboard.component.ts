@@ -21,6 +21,7 @@ export class DashboardComponent implements AfterViewInit {
   customerForm: FormGroup = new FormGroup({})
   visitCount:any;
   totalVisitCount : number = 8;
+
   constructor(private appService : AppServices , private cdRef : ChangeDetectorRef , private router :Router , private loader : LoadingIndicatorService , private formBuilder : FormBuilder){
     this.getDashboardDetails();
     this.getEmployee();
@@ -87,6 +88,15 @@ export class DashboardComponent implements AfterViewInit {
         if(res['data']){
           //this.loader.closeLoadingIndicator();
           this.employeeList = res['data'];
+         /*  for(let i = 0 ; i < res['data'].length ; i++){
+            let d = res['data'][i];
+            let obj = {};
+            obj['image']='../../../assets/man-dummy.jpeg';
+            obj['thumbImage']='../../../assets/man-dummy.jpeg';
+            obj['title']= `${d.firstName} ${d.lastName}`;
+            this.employeeList.push(obj);
+          }
+          this.cdRef.detectChanges(); */
         }else {
           // this.loader.closeLoadingIndicator();
         }

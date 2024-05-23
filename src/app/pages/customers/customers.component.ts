@@ -14,7 +14,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class CustomersComponent implements AfterViewInit, OnInit{
   customerForm: FormGroup = new FormGroup({})
-  displayedColumns: string[] = ['customerCode', 'customerName', 'city', 'email' , 'phone' , 'gstNo' ,'amcDue'];
+  displayedColumns: string[] = ['customerCode', 'customerName', 'city', 'email' , 'phone' , 'gstNo' ,'amcDue' , 'machineNumber'];
   dataSource :any ;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -30,7 +30,8 @@ export class CustomersComponent implements AfterViewInit, OnInit{
       amcDue : new FormControl('',[Validators.required]),
       phone: new FormControl('',[Validators.required]),
       gstNo: new FormControl(''),
-      customerId : new FormControl('')
+      customerId : new FormControl(''),
+      machineNumber : new FormControl('',[Validators.required])
     })
 
     this.getCustomerList();
@@ -69,6 +70,7 @@ export class CustomersComponent implements AfterViewInit, OnInit{
         obj['email'] = this.customerForm.controls['email'].value;
         obj['gstNo'] = this.customerForm.controls['gstNo']?.value;
         obj['customerId'] = this.customerForm.controls['customerId']?.value;
+        obj['machineNumber'] = this.customerForm.controls['machineNumber']?.value;
         this.appService.createUpdateCustomer(obj).subscribe((res)=>{
           if(res['data']){
             this.toast.success(res['message']);
@@ -99,6 +101,7 @@ export class CustomersComponent implements AfterViewInit, OnInit{
     this.customerForm.get('gstNo').setValue(element?.gstNo);
     this.customerForm.get('amcDue').setValue(element?.amcDue);
     this.customerForm.get('customerId').setValue(element?._id);
+    this.customerForm.get('machineNumber').setValue(element?.machineNumber);
   }
 
   reset = () =>{
@@ -113,5 +116,6 @@ export interface CustomerElement {
   phone: string;
   email: string;
   amcDue: string;
-  gstNo:string
+  gstNo:string;
+  machineNumber : string
 }
