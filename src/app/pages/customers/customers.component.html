@@ -8,7 +8,7 @@
                     </div>
                     <div class="right"> 
                         <div style="margin-top: 20px;">
-                            <h1 style="font-size: bold;">Create / Update Customer's</h1>
+                            <h1 style="font-size: bold;">Create / Update Customer</h1>
                         </div>
                         <form [formGroup]="customerForm" (submit)="$event.preventDefault()">
                             <div>
@@ -49,8 +49,16 @@
                                     </mat-datepicker>
                                 </mat-form-field>
                                 <mat-form-field class="full-width">
-                                    <mat-label>Machine No.</mat-label>
-                                    <input matInput class="form-control" formControlName="machineNumber" type="text"/>
+                                    <mat-label>Petrol Machine No.</mat-label>
+                                    <input matInput class="form-control" formControlName="petrolMachineNumber" type="text"/>
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                    <mat-label>Diesel Machine No.</mat-label>
+                                    <input matInput class="form-control" formControlName="dieselMachineNumber" type="text"/>
+                                </mat-form-field>
+                                <mat-form-field class="full-width">
+                                    <mat-label>Combo Machine No.</mat-label>
+                                    <input matInput class="form-control" formControlName="comboMachineNumber" type="text"/>
                                 </mat-form-field>
                                 <input class="form-control" formControlName="customerId" type="hidden"/>
                                 
@@ -112,9 +120,19 @@
                             <td mat-cell *matCellDef="let element"> {{element.amcDue}} </td>
                           </ng-container>
 
-                          <ng-container matColumnDef="machineNumber">
-                            <th mat-header-cell *matHeaderCellDef> Machine No. </th>
-                            <td mat-cell *matCellDef="let element"> {{element.machineNumber}} </td>
+                          <ng-container matColumnDef="petrolMachineNumber">
+                            <th mat-header-cell *matHeaderCellDef> Petrol Mach No. </th>
+                            <td mat-cell *matCellDef="let element"> {{element.petrolMachineNumber}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="dieselMachineNumber">
+                            <th mat-header-cell *matHeaderCellDef> Diesel Mach No. </th>
+                            <td mat-cell *matCellDef="let element"> {{element.dieselMachineNumber}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="comboMachineNumber">
+                            <th mat-header-cell *matHeaderCellDef> Diesel Mach No. </th>
+                            <td mat-cell *matCellDef="let element"> {{element.comboMachineNumber}} </td>
                           </ng-container>
 
                           <!-- <ng-container matColumnDef="action">

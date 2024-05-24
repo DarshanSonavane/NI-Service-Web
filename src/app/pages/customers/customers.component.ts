@@ -14,7 +14,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class CustomersComponent implements AfterViewInit, OnInit{
   customerForm: FormGroup = new FormGroup({})
-  displayedColumns: string[] = ['customerCode', 'customerName', 'city', 'email' , 'phone' , 'gstNo' ,'amcDue' , 'machineNumber'];
+  displayedColumns: string[] = ['customerCode', 'customerName', 'city', 'email' , 'phone' , 'gstNo' ,'amcDue' , 'petrolMachineNumber' , 'dieselMachineNumber' , 'comboMachineNumber' ];
   dataSource :any ;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -31,7 +31,9 @@ export class CustomersComponent implements AfterViewInit, OnInit{
       phone: new FormControl('',[Validators.required]),
       gstNo: new FormControl(''),
       customerId : new FormControl(''),
-      machineNumber : new FormControl('',[Validators.required])
+      petrolMachineNumber : new FormControl(''),
+      dieselMachineNumber : new FormControl(''),
+      comboMachineNumber : new FormControl(''),
     })
 
     this.getCustomerList();
@@ -70,7 +72,9 @@ export class CustomersComponent implements AfterViewInit, OnInit{
         obj['email'] = this.customerForm.controls['email'].value;
         obj['gstNo'] = this.customerForm.controls['gstNo']?.value;
         obj['customerId'] = this.customerForm.controls['customerId']?.value;
-        obj['machineNumber'] = this.customerForm.controls['machineNumber']?.value;
+        obj['petrolMachineNumber'] = this.customerForm.controls['petrolMachineNumber']?.value;
+        obj['dieselMachineNumber'] = this.customerForm.controls['dieselMachineNumber']?.value;
+        obj['comboMachineNumber'] = this.customerForm.controls['comboMachineNumber']?.value;
         this.appService.createUpdateCustomer(obj).subscribe((res)=>{
           if(res['data']){
             this.toast.success(res['message']);
@@ -101,7 +105,9 @@ export class CustomersComponent implements AfterViewInit, OnInit{
     this.customerForm.get('gstNo').setValue(element?.gstNo);
     this.customerForm.get('amcDue').setValue(element?.amcDue);
     this.customerForm.get('customerId').setValue(element?._id);
-    this.customerForm.get('machineNumber').setValue(element?.machineNumber);
+    this.customerForm.get('petrolMachineNumber').setValue(element?.petrolMachineNumber);
+    this.customerForm.get('dieselMachineNumber').setValue(element?.dieselMachineNumber);
+    this.customerForm.get('comboMachineNumber').setValue(element?.comboMachineNumber);
   }
 
   reset = () =>{
@@ -117,5 +123,7 @@ export interface CustomerElement {
   email: string;
   amcDue: string;
   gstNo:string;
-  machineNumber : string
+  petrolMachineNumber: string;
+  dieselMachineNumber: string;
+  comboMachineNumber: string;
 }
