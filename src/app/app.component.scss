@@ -1,3 +1,70 @@
 .spacer {
     flex: 1 1 auto;
 }
+
+/* Side Nav CSS Starts HERE */
+
+* {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.sidebar-opener {
+    cursor: pointer;
+}
+
+.sidebar-slider {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #fff;
+    transform: translateX(-100%);
+    transition: 0.5s 300ms transform;
+    width: 300px;
+    z-index: 100;
+}
+
+.sidebar-slider.sidebar-slide-in {
+    transform: translateX(0%);
+    transition: ease-in-out 600ms transform;
+}
+
+.sidebar-close {
+    position: fixed;
+    top: 0;
+    right: 0;
+    color: #000;
+    cursor: pointer;
+    padding: 16px;
+}
+
+.sidebar-content {
+    display: flex;
+    align-items: left;
+    margin-bottom: 20px;
+    flex-direction: column;
+    color: #000;
+    font-size: 16px;
+    padding: 16px;
+    height: 100%;
+    margin-top: 100px;
+}
+
+.img-details{
+    height: 30px !important;
+}
+
+.sidemenu-icons{
+    height: 30px !important;
+}
+
+.drawer-content{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 40px;
+}
+
+/* Side Nav CSS Ends HERE */

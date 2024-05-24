@@ -42,8 +42,8 @@
     height: 60px;
     display: flex;
     align-items: center;
-    background-color: #8EC740;
-    color: white;
+    background-color: #fff;
+    color: #000;
     font-weight: 600;
   }
 
@@ -313,11 +313,43 @@
   <div class="spacer"></div>
   
   <div style="padding: 20px;" *ngIf="newRouter.url != '/login'">
-    <span style="margin-left: 20px;font-weight: bold;" (click)="goToDashboard()">Dashboard</span>
-    <span style="margin-left: 20px;font-weight: bold;" (click)="goToComplaints()">Complaints</span>
-    <span style="margin-left: 20px;font-weight: bold;" (click)="goToEmployee()">Employee</span>
-    <span style="margin-left: 20px;font-weight: bold;" (click)="goToCustomers()">Customers</span>
-    <span style="margin-left: 20px;font-weight: bold;" (click)="logout()">Logout</span>
+
+    <div class="sidebar-opener" (click)="sidebarShow = !sidebarShow">
+      <img [src]="hamburgerIconPath" class="img-details"/>
+  </div>
+  
+  <div class="sidebar-slider" [class.sidebar-slide-in]="sidebarShow">
+      <div
+          class="sidebar-close"
+          (click)="sidebarShow = !sidebarShow"
+      >
+        X
+      </div>
+      
+      <div class="sidebar-content">
+        <div class="row drawer-content">
+          <img [src]="homeIconPath" class="sidemenu-icons"/>
+          <span style="margin-left: 20px;font-weight: bold;" (click)="goToDashboard()">Dashboard</span>
+        </div>
+        <div class="row drawer-content">
+          <img [src]="complaintIconPath" class="sidemenu-icons"/>
+          <span style="margin-left: 20px;font-weight: bold;" (click)="goToComplaints()">Complaints</span>
+        </div>
+        <div class="row drawer-content">
+          <img [src]="employeeIconPath" class="sidemenu-icons"/>
+          <span style="margin-left: 20px;font-weight: bold;" (click)="goToEmployee()">Employee</span>
+        </div>
+        <div class="row drawer-content">
+          <img [src]="customerIconPath" class="sidemenu-icons"/>
+          <span style="margin-left: 20px;font-weight: bold;" (click)="goToCustomers()">Customers</span>
+        </div>
+        <div class="row drawer-content">
+          <img [src]="logoutIconPath" class="sidemenu-icons"/>
+          <span style="margin-left: 20px;font-weight: bold;" (click)="logout()">Logout</span>
+        </div>
+      </div>
+  </div>
+  
   </div>
 </div>
 

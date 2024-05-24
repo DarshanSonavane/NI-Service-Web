@@ -115,12 +115,15 @@ export class ComplaintListComponent {
     for(var i = 0 ; i < this.complaintsList.length ; i++){
       let d = this.complaintsList[i];
       let obj = {}
+      const employeeFirstName = d['assignedTo'] && d['assignedTo']['firstName'] ? d['assignedTo']['firstName'] : '-' ;
+      const employeeLastName = d['assignedTo'] && d['assignedTo']['lastName'] ? d['assignedTo']['lastName'] : '-' ;
       obj['Date Of Complaint'] = this.convertDate(d.createdAt);
       obj['Complaint Status'] = d.status == '0' ? 'Close' : 'Open';
       obj['Machine Type'] = d.machineType ? d.machineType == '0' ? 'Petrol' : 'Disel' : '-';
       obj['Complaint Type'] = d.complaintType.name;
       obj['Customer Code'] = d.customerId ? d.customerId.customerCode : '-';
       obj['Customer Name'] = d.customerId && d.customerId.customerName ? d.customerId.customerName : '-';
+      obj['Employee Name (Assigned To)'] = employeeFirstName && employeeLastName ? `${employeeFirstName} ${employeeLastName}`  : '-'
       obj['Employee Feedback'] = d.employeeFeedback ? d.employeeFeedback : '-';
       obj['Customer Feedback'] = d.ratings && d.ratings.feedback ? d.ratings.feedback : '-'
       excelDataArr.push(obj);

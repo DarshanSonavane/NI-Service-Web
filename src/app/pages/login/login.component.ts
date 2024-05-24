@@ -1,7 +1,7 @@
 import { LoadingIndicatorService } from './../../service/loading-indicator.service';
 import { AppServices } from './../../service/app-services';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ChangeDetectorRef } from '@angular/core';
 import { FormGroup , FormBuilder , Validators , FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
@@ -15,7 +15,7 @@ import { ResetPasswordPopupComponent } from '../reset-password-popup/reset-passw
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({})
-  constructor(private formBuilder : FormBuilder , private router : Router , private appService : AppServices , private toast : ToastrService , private loader : LoadingIndicatorService , private dialog : MatDialog){
+  constructor(private formBuilder : FormBuilder , private router : Router , private appService : AppServices , private toast : ToastrService , private loader : LoadingIndicatorService , private dialog : MatDialog , private cdrref : ChangeDetectorRef){
     console.log("Inside Login");
   }
 
@@ -44,9 +44,11 @@ export class LoginComponent implements OnInit {
             if(res['data']['role'] == '0'){
               this.router.navigateByUrl('/dashboard')
               localStorage.setItem('userRole','ADMIN')
+              this.cdrref.detectChanges();
             }else {
               localStorage.setItem('userRole','EMPLOYEE');
-              this.router.navigateByUrl('/employee-complaints')
+              this.router.navigateByUrl('/employee-complaints');
+              this.cdrref.detectChanges();
             }
           }else {
             // show toast here
