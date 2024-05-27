@@ -1,0 +1,57 @@
+.table {
+    width: 100%;
+}
+.container{
+    margin-top: 60px;
+    background-color: #e1e1e1;
+    height: 100%;
+}
+::ng-deep .mat-toolbar{
+    z-index: 998;
+    position: relative,
+  }
+  ::ng-deep .mat-tab-group{
+    margin-top:55px ;
+  }
+  
+  ::ng-deep .mat-tab-header{
+        z-index: 999;
+        width:100vw;
+        position: relative  !important;
+        background-color: red !important;
+  }
+  ::ng-deep .mat-tab-body-wrapper{
+      position: relative !important;
+      margin-top:55px;
+  }
+  ::ng-deep .mat-mdc-tab-label-container{
+      margin: 50px;
+  } 
+
+.tabs{
+    margin: 50px;
+}
+
+.rowseparator{
+    border-bottom: 1px solid #AFAFAF;
+    height: 50px;
+}
+.table .tr{
+    border-bottom: 1px solid #AFAFAF;
+    height: 50px;
+}
+
+.assign {
+    color: red;
+    font-weight: bold;
+}
+
+.close {
+    color: green;
+    font-weight: bold;
+}
+
+.cylinder-button{
+    margin: 30px;
+    float: right;
+}

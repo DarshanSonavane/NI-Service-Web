@@ -6,6 +6,7 @@ import { ComplaintListComponent } from './pages/complaint-list/complaint-list.co
 import { LoginComponent } from './pages/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CalibrationComponent } from './pages/calibration/calibration.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'employee', component: EmployeeComponent },
   { path: 'customers', component: CustomersComponent },
+  { path: 'calibration', component: CalibrationComponent },
   { path: '**', redirectTo: '' }
 ];;
 

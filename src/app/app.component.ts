@@ -92,4 +92,12 @@ export class AppComponent {
     localStorage.clear();
     this.router.navigate(['/login']);
   }
+
+  goToCalibration = () =>{
+    this.sidebarShow = !this.sidebarShow;
+    this.userRole = localStorage.getItem("userRole");
+    if(this.userRole == "ADMIN"){
+      this.router.navigateByUrl("/calibration");
+    }
+  }
 }

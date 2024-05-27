@@ -24,6 +24,13 @@
                                     <mat-label>City</mat-label>
                                     <input matInput class="form-control" formControlName="city" type="text" required/>
                                 </mat-form-field>
+                                <mat-form-field class="example-full-width" style="margin-right: 10px;">
+                                  <mat-label>Select State</mat-label>
+                                  <mat-select (valueChange)="onStateChange($event)" class="form-control" formControlName="state" required>
+                                      <mat-option >Select Status</mat-option>
+                                      <mat-option *ngFor="let state of stateList" [value]="state.code">{{state.name}}</mat-option>
+                                  </mat-select>
+                              </mat-form-field>
                                 <mat-form-field class="full-width">
                                     <mat-label>Email</mat-label>
                                     <input matInput class="form-control" formControlName="email" type="email" required/>
@@ -96,6 +103,11 @@
                           <ng-container matColumnDef="city">
                             <th mat-header-cell *matHeaderCellDef> City </th>
                             <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="state">
+                            <th mat-header-cell *matHeaderCellDef> State </th>
+                            <td mat-cell *matCellDef="let element"> {{element.stateCode}} </td>
                           </ng-container>
                       
                           <!-- Symbol Column -->

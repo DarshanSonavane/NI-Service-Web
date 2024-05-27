@@ -36,6 +36,7 @@ import { CustomersComponent } from './pages/customers/customers.component';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { ComplaintDetailsPopupComponent } from './pages/complaint-details-popup/complaint-details-popup.component';
 import { ResetPasswordPopupComponent } from './pages/reset-password-popup/reset-password-popup.component';
+import { CalibrationComponent } from './pages/calibration/calibration.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { ResetPasswordPopupComponent } from './pages/reset-password-popup/reset-
     EmployeeActionPopupComponent,
     CustomersComponent,
     ComplaintDetailsPopupComponent,
-    ResetPasswordPopupComponent
+    ResetPasswordPopupComponent,
+    CalibrationComponent
   ],
   imports: [
     BrowserModule,

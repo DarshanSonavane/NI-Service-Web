@@ -14,12 +14,16 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class CustomersComponent implements AfterViewInit, OnInit{
   customerForm: FormGroup = new FormGroup({})
-  displayedColumns: string[] = ['customerCode', 'customerName', 'city', 'email' , 'phone' , 'gstNo' ,'amcDue' , 'petrolMachineNumber' , 'dieselMachineNumber' , 'comboMachineNumber' ];
+  displayedColumns: string[] = ['customerCode', 'customerName', 'city', 'state', 'email' , 'phone' , 'gstNo' ,'amcDue' , 'petrolMachineNumber' , 'dieselMachineNumber' , 'comboMachineNumber'  ];
   dataSource :any ;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   clickedRows = new Set<CustomerElement>();
-  constructor(private formBuilder : FormBuilder , private router : Router , private appService : AppServices , private toast : ToastrService , private loader : LoadingIndicatorService){}
+  stateList:any;
+  selectedStatecode :any;
+  constructor(private formBuilder : FormBuilder , private router : Router , private appService : AppServices , private toast : ToastrService , private loader : LoadingIndicatorService){
+    
+  }
 
   ngOnInit(){
     this.customerForm = this.formBuilder.group({
@@ -34,9 +38,11 @@ export class CustomersComponent implements AfterViewInit, OnInit{
       petrolMachineNumber : new FormControl(''),
       dieselMachineNumber : new FormControl(''),
       comboMachineNumber : new FormControl(''),
+      state : new FormControl('', [Validators.required])
     })
 
     this.getCustomerList();
+    this.getStateList();
   }
 
   ngAfterViewInit() {
@@ -75,6 +81,7 @@ export class CustomersComponent implements AfterViewInit, OnInit{
         obj['petrolMachineNumber'] = this.customerForm.controls['petrolMachineNumber']?.value;
         obj['dieselMachineNumber'] = this.customerForm.controls['dieselMachineNumber']?.value;
         obj['comboMachineNumber'] = this.customerForm.controls['comboMachineNumber']?.value;
+        obj['stateCode'] = this.selectedStatecode;
         this.appService.createUpdateCustomer(obj).subscribe((res)=>{
           if(res['data']){
             this.toast.success(res['message']);
@@ -108,10 +115,22 @@ export class CustomersComponent implements AfterViewInit, OnInit{
     this.customerForm.get('petrolMachineNumber').setValue(element?.petrolMachineNumber);
     this.customerForm.get('dieselMachineNumber').setValue(element?.dieselMachineNumber);
     this.customerForm.get('comboMachineNumber').setValue(element?.comboMachineNumber);
+    this.customerForm.get('state').setValue(element?.stateCode);
   }
 
   reset = () =>{
     this.customerForm.reset();
+  }
+
+  getStateList = () =>{
+    this.appService.getStatesList().subscribe((res:any)=>{
+      this.stateList = res.data;
+    })
+  }
+
+  onStateChange = (event)=>{
+    console.log("State Event",event);
+    this.selectedStatecode = event;
   }
 }
 
@@ -126,4 +145,5 @@ export interface CustomerElement {
   petrolMachineNumber: string;
   dieselMachineNumber: string;
   comboMachineNumber: string;
+  state :string
 }
