@@ -83,4 +83,14 @@ export class AppServices{
         let url = this.BASE_URL + '/re-assign-complaint';
         return this.http.post(url,data);
     }
+
+    getCalibrationList = () =>{
+        let url = this.BASE_URL + '/get-calibration-request-list';
+        return this.http.get(url);
+    }
+
+    getStatesList = () =>{
+        let url = this.BASE_URL + '/state-list';
+        return this.http.get(url);
+    }
 }
