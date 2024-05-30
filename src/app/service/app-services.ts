@@ -93,4 +93,9 @@ export class AppServices{
         let url = this.BASE_URL + '/state-list';
         return this.http.get(url);
     }
+
+    updateCylinderDetails = (data:any) =>{
+        let url = this.BASE_URL + '/update-cylinder-details';
+        return this.http.post(url,data);
+    }
 }

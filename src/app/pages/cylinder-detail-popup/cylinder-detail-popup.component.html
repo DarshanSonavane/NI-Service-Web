@@ -1,0 +1,51 @@
+<div class="complaint-action">
+    <div>
+        <mat-card class="assign-card">
+            <mat-card-content>
+                <div>
+                    <img width="200px" height="200px" src="../../../assets/NI_WEB.jpg"/>
+                </div>
+                <div> 
+                    <div>
+                        <h1 style="font-size: bold;">Cylinder Details</h1>
+                    </div>
+                    <form [formGroup]="cylinderForm" (submit)="$event.preventDefault()">
+                        <div>
+                            <mat-form-field class="full-width">
+                                <mat-label>CO Value</mat-label>
+                                <input matInput class="form-control" formControlName="CO" type="text" required/>
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>CO2 Value</mat-label>
+                                <input matInput class="form-control" formControlName="CO2" type="text" required/>
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>HC Value</mat-label>
+                                <input matInput class="form-control" formControlName="HC" type="text" required/>
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>O2 Value</mat-label>
+                                <input matInput class="form-control" formControlName="O2" type="text" required/>
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>Cylinder Number</mat-label>
+                                <input matInput class="form-control" formControlName="cylinderNumber" type="text" required/>
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>Cylinder Make</mat-label>
+                                <input matInput class="form-control" formControlName="cylinderMake" type="text" required/>
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                <mat-label>Validity Date</mat-label>
+                                <input matInput class="form-control" formControlName="validityDate" type="text" required/>
+                            </mat-form-field>
+                            <input class="form-control" formControlName="createdBy" type="hidden"/>
+                        </div>
+                    </form>
+                    <button [disabled]="!cylinderForm.valid" mat-flat-button color="primary" (click)="updateCylinderDetails()">Save & Close</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+         
+    </div>
+</div>

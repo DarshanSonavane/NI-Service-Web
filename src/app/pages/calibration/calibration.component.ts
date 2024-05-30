@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { LoadingIndicatorService } from './../../service/loading-indicator.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { CylinderDetailPopupComponent } from '../cylinder-detail-popup/cylinder-detail-popup.component';
+
 
 
 @Component({
@@ -15,7 +17,7 @@ import { MatPaginator } from '@angular/material/paginator';
 export class CalibrationComponent {
   calibrationData:any;
   formattedCalibrationData:any
-  constructor(private appService : AppServices , private toastService : ToastrService){
+  constructor(private appService : AppServices , private toastService : ToastrService , private dialog : MatDialog){
     this.getCalibrationList();
   }
 
@@ -52,5 +54,16 @@ export class CalibrationComponent {
 
   }
 
-  updateCylinderDetails = () =>{}
+  updateCylinderDetails = () =>{
+    try{
+      let dialgoRef = this.dialog.open(CylinderDetailPopupComponent).afterClosed().subscribe((result : any)=>{
+        // dialgoRef = undefined;
+        if(result == 'submitted'){
+          this.dialog.closeAll();
+        }
+      });
+    }catch(err){
+      console.log(err);
+    }
+  }
 }

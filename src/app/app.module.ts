@@ -37,6 +37,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { ComplaintDetailsPopupComponent } from './pages/complaint-details-popup/complaint-details-popup.component';
 import { ResetPasswordPopupComponent } from './pages/reset-password-popup/reset-password-popup.component';
 import { CalibrationComponent } from './pages/calibration/calibration.component';
+import { CylinderDetailPopupComponent } from './pages/cylinder-detail-popup/cylinder-detail-popup.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { CalibrationComponent } from './pages/calibration/calibration.component'
     CustomersComponent,
     ComplaintDetailsPopupComponent,
     ResetPasswordPopupComponent,
-    CalibrationComponent
+    CalibrationComponent,
+    CylinderDetailPopupComponent
   ],
   imports: [
     BrowserModule,

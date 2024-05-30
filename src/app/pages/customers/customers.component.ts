@@ -29,10 +29,10 @@ export class CustomersComponent implements AfterViewInit, OnInit{
     this.customerForm = this.formBuilder.group({
       customerCode : new FormControl('',[Validators.required]),
       customerName : new FormControl('',[Validators.required]),
-      email : new FormControl('',[Validators.required]),
+      email : new FormControl(''),
       city : new FormControl('',[Validators.required]),
       amcDue : new FormControl('',[Validators.required]),
-      phone: new FormControl('',[Validators.required]),
+      phone: new FormControl(''),
       gstNo: new FormControl(''),
       customerId : new FormControl(''),
       petrolMachineNumber : new FormControl(''),
