@@ -63,6 +63,7 @@ export class CustomersComponent implements AfterViewInit, OnInit{
 
   createUpdateCustomer = () =>{
     try{
+      console.log(this.customerForm);
       if(this.customerForm.valid){
         let date = this.customerForm.controls['amcDue'].value;
         let newDate = new Date(date);
@@ -81,7 +82,7 @@ export class CustomersComponent implements AfterViewInit, OnInit{
         obj['petrolMachineNumber'] = this.customerForm.controls['petrolMachineNumber']?.value;
         obj['dieselMachineNumber'] = this.customerForm.controls['dieselMachineNumber']?.value;
         obj['comboMachineNumber'] = this.customerForm.controls['comboMachineNumber']?.value;
-        obj['stateCode'] = this.selectedStatecode;
+        obj['stateCode'] = this.selectedStatecode ? this.selectedStatecode : this.customerForm.controls['state']?.value;
         this.appService.createUpdateCustomer(obj).subscribe((res)=>{
           if(res['data']){
             this.toast.success(res['message']);
