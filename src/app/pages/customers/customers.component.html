@@ -67,6 +67,13 @@
                                     <mat-label>Combo Machine No.</mat-label>
                                     <input matInput class="form-control" formControlName="comboMachineNumber" type="text"/>
                                 </mat-form-field>
+                                <mat-form-field class="example-full-width" style="margin-right: 10px;">
+                                  <mat-label>Select Machine Type</mat-label>
+                                  <mat-select (valueChange)="onMachineTypeChange($event)" class="form-control" formControlName="machineModel" required>
+                                      <mat-option >Select Machine Type</mat-option>
+                                      <mat-option *ngFor="let machine of machineTypes" [value]="machine.type">{{machine.type}}</mat-option>
+                                  </mat-select>
+                              </mat-form-field>
                                 <input class="form-control" formControlName="customerId" type="hidden"/>
                                 
                             </div>

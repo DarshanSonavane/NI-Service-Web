@@ -7,24 +7,24 @@
 ::ng-deep .mat-toolbar{
     z-index: 998;
     position: relative,
-  }
-  ::ng-deep .mat-tab-group{
+}
+::ng-deep .mat-tab-group{
     margin-top:55px ;
-  }
+}
   
-  ::ng-deep .mat-tab-header{
+::ng-deep .mat-tab-header{
         z-index: 999;
         width:100vw;
         position: relative  !important;
         background-color: red !important;
-  }
-  ::ng-deep .mat-tab-body-wrapper{
+}
+::ng-deep .mat-tab-body-wrapper{
       position: relative !important;
       margin-top:55px;
-  }
-  ::ng-deep .mat-mdc-tab-label-container{
+}
+::ng-deep .mat-mdc-tab-label-container{
       margin: 50px;
-  } 
+} 
 
 .tabs{
     margin: 50px;
@@ -47,4 +47,27 @@
 .close {
     color: green;
     font-weight: bold;
+}
+
+/* Styles for tab labels */
+.mat-tab-label {
+    min-width: 25px !important;
+    padding: 5px;
+    background-color: transparent;
+    color: red;
+    font-weight: 700;
+}
+
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+    min-width: 25px !important;
+    padding: 5px;
+    background-color: transparent;
+    color: red;
+    font-weight: 700;
+}
+
+/* Styles for the ink bar */
+.mat-ink-bar {
+    background-color: green;
 }

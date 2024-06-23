@@ -21,6 +21,8 @@ export class CustomersComponent implements AfterViewInit, OnInit{
   clickedRows = new Set<CustomerElement>();
   stateList:any;
   selectedStatecode :any;
+  selectedMachineType : any;
+  machineTypes = [ { "id": 1, "type": "NPM MGA1" }, { "id": 2, "type": "NPM MGA2" }, { "id": 3, "type": "NPM SMIIIB" }, { "id": 4, "type": "NUVO 10" }, { "id": 5, "type": "NUVO 20" } ];
   constructor(private formBuilder : FormBuilder , private router : Router , private appService : AppServices , private toast : ToastrService , private loader : LoadingIndicatorService){
     
   }
@@ -38,7 +40,8 @@ export class CustomersComponent implements AfterViewInit, OnInit{
       petrolMachineNumber : new FormControl(''),
       dieselMachineNumber : new FormControl(''),
       comboMachineNumber : new FormControl(''),
-      state : new FormControl('', [Validators.required])
+      state : new FormControl('', [Validators.required]),
+      machineModel: new FormControl('')
     })
 
     this.getCustomerList();
@@ -83,6 +86,7 @@ export class CustomersComponent implements AfterViewInit, OnInit{
         obj['dieselMachineNumber'] = this.customerForm.controls['dieselMachineNumber']?.value;
         obj['comboMachineNumber'] = this.customerForm.controls['comboMachineNumber']?.value;
         obj['stateCode'] = this.selectedStatecode ? this.selectedStatecode : this.customerForm.controls['state']?.value;
+        obj['machineModel'] = this.customerForm.controls['machineModel']?.value;
         this.appService.createUpdateCustomer(obj).subscribe((res)=>{
           if(res['data']){
             this.toast.success(res['message']);
@@ -132,6 +136,11 @@ export class CustomersComponent implements AfterViewInit, OnInit{
   onStateChange = (event)=>{
     console.log("State Event",event);
     this.selectedStatecode = event;
+  }
+
+  onMachineTypeChange = (event)=>{
+    console.log("Machine Type" , event);
+    this.selectedMachineType = event;
   }
 }
 
