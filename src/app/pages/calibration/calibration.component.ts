@@ -23,34 +23,39 @@ export class CalibrationComponent {
 
   getCalibrationList = () =>{
     try{
-      this.appService.getCalibrationList().subscribe((res:any)=>{
-        this.formattedCalibrationData = [];
-        this.calibrationData = res.data;
-        for(let i = 0 ; i < this.calibrationData.length ; i++){
-            console.log('here1');
-            let d = this.calibrationData[i];
-            if(d.machineType === '0'){
-                d['machinTypeValue'] = "Petrol";
-            }else if(d.machineType === '1'){
-                d['machinTypeValue'] = "Diesel";
-            }else if(d.machineType === '2'){
-                d['machinTypeValue'] = "Combo";
-            }
-
-            if(d['employeeId']){
-              d['employeeId']['employeeName'] = d['employeeId']['firstName'] + ' ' +d['employeeId']['lastName'];
-            }
-            console.log('here2' , d);
-            this.formattedCalibrationData.push(d);
+      const userRole = localStorage.getItem("userRole");
+      const userDetails = localStorage.getItem('userDetails') ? localStorage.getItem('userDetails') : null
+      if(userRole == 'ADMIN'){
+        this.appService.getCalibrationList().subscribe(async (res:any)=>{
+          this.generateAndFormatCalibrationData(res.data);
+        })
+      }else {
+        let data = {
+          "employeeId" : userDetails['_id']
         }
-        
-      })
+        this.appService.getMyCalibrationList(data).subscribe((res:any)=>{
+          this.generateAndFormatCalibrationData(res.data);
+        })
+      }
+      
     }catch(err){
       console.log(err);
     }
   }
 
-  generateCalibration = () =>{
+  generateCalibration = (calibration:any) =>{
+    try{
+      let data = {
+        calibrationId : calibration._id
+      }
+      this.appService.generateAndSendCalibration(data).subscribe((res:any)=>{
+        if(res){
+          this.toastService.success(res['message']);
+        }
+      })
+    }catch(err){
+      console.log(err);
+    }
 
   }
 
@@ -62,6 +67,31 @@ export class CalibrationComponent {
           this.dialog.closeAll();
         }
       });
+    }catch(err){
+      console.log(err);
+    }
+  }
+
+  generateAndFormatCalibrationData = (data:any) =>{
+    try{
+      this.formattedCalibrationData = [];
+          this.calibrationData = data;
+          for(let i = 0 ; i < this.calibrationData.length ; i++){
+              let d = this.calibrationData[i];
+              if(d.machineType === '0'){
+                  d['machinTypeValue'] = "Petrol";
+              }else if(d.machineType === '1'){
+                  d['machinTypeValue'] = "Diesel";
+              }else if(d.machineType === '2'){
+                  d['machinTypeValue'] = "Combo";
+              }
+  
+              if(d['employeeId']){
+                d['employeeId']['employeeName'] = d['employeeId']['firstName'] + ' ' +d['employeeId']['lastName'];
+              }
+              console.log('here2' , d);
+              this.formattedCalibrationData.push(d);
+          }
     }catch(err){
       console.log(err);
     }

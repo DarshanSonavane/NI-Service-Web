@@ -98,4 +98,14 @@ export class AppServices{
         let url = this.BASE_URL + '/update-cylinder-details';
         return this.http.post(url,data);
     }
-}
+
+    getMyCalibrationList = (data:any) => {
+        let url = this.BASE_URL + '/get-my-calibration-list';
+        return this.http.post(url,data);
+    }
+
+    generateAndSendCalibration = (data:any)=>{
+        let url = this.BASE_URL + '/generate-send-calibration';
+        return this.http.post(url,data);
+    }
+}   
