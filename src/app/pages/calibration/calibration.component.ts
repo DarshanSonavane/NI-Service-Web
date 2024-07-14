@@ -52,6 +52,7 @@ export class CalibrationComponent {
       this.appService.generateAndSendCalibration(data).subscribe((res:any)=>{
         if(res){
           this.toastService.success(res['message']);
+          this.getCalibrationList();
         }
       })
     }catch(err){
