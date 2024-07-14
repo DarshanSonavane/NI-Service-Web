@@ -17,8 +17,10 @@ import { CylinderDetailPopupComponent } from '../cylinder-detail-popup/cylinder-
 export class CalibrationComponent {
   calibrationData:any;
   formattedCalibrationData:any
+  userRole:any;
   constructor(private appService : AppServices , private toastService : ToastrService , private dialog : MatDialog){
     this.getCalibrationList();
+    this.userRole = localStorage.getItem("userRole");
   }
 
   getCalibrationList = () =>{

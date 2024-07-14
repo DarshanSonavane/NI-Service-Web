@@ -1,5 +1,5 @@
 <div class="container">
-    <button mat-flat-button color="primary" class="cylinder-button" (click)="updateCylinderDetails()">Cylinder Details</button>
+    <button mat-flat-button color="primary" class="cylinder-button" (click)="updateCylinderDetails()" *ngIf="userRole == 'ADMIN'">Cylinder Details</button>
     <div>
         <mat-tab-group class="tabs">
             <mat-tab label="Calibration Request">
