@@ -95,9 +95,10 @@ export class AppComponent {
 
   goToCalibration = () =>{
     this.sidebarShow = !this.sidebarShow;
-    this.userRole = localStorage.getItem("userRole");
-    if(this.userRole == "ADMIN"){
+    // this.userRole = localStorage.getItem("userRole");
+    this.router.navigateByUrl("/calibration");
+    /* if(this.userRole == "ADMIN"){
       this.router.navigateByUrl("/calibration");
-    }
+    } */
   }
 }
