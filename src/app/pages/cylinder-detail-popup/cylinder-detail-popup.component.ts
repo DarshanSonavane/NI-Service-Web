@@ -18,6 +18,7 @@ export class CylinderDetailPopupComponent {
   
 
   ngOnInit(){
+    this.getCylinderDetails();
     this.cylinderForm = this.formBuilder.group({
       CO : new FormControl('',[Validators.required]),
       CO2 : new FormControl('',[Validators.required]),
@@ -30,7 +31,24 @@ export class CylinderDetailPopupComponent {
     })
     let user = JSON.parse(localStorage.getItem('userDetails'));
     this.cylinderForm.get('createdBy').setValue(user?._id);
-  }  
+  }
+  
+  getCylinderDetails = () =>{
+    try{
+      this.service.getCylinderDetails().subscribe((res:any)=>{
+        this.cylinderForm.get('CO').setValue(res['data'][0]['CO']);
+        this.cylinderForm.get('CO2').setValue(res['data'][0]['CO2']);
+        this.cylinderForm.get('HC').setValue(res['data'][0]['HC']);
+        this.cylinderForm.get('O2').setValue(res['data'][0]['O2']);
+        this.cylinderForm.get('cylinderNumber').setValue(res['data'][0]['cylinderNumber']);
+        this.cylinderForm.get('cylinderMake').setValue(res['data'][0]['cylinderMake']);
+        this.cylinderForm.get('validityDate').setValue(res['data'][0]['validityDate']);
+      })    
+    }catch(err){
+      console.log(err);
+    }
+  }
+
   updateCylinderDetails = () =>{
     try{
       if(this.cylinderForm.valid){

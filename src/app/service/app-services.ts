@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable() 
 export class AppServices{
-    // BASE_URL = "http://localhost:3000";
+    //BASE_URL = "http://localhost:3000";
     BASE_URL = "http://16.170.250.91:3000";
     constructor(private http : HttpClient){}
 
@@ -107,5 +107,10 @@ export class AppServices{
     generateAndSendCalibration = (data:any)=>{
         let url = this.BASE_URL + '/generate-send-calibration';
         return this.http.post(url,data);
+    }
+
+    getCylinderDetails = ()=>{
+        let url = this.BASE_URL + '/get-cylinder-details';
+        return this.http.get(url);
     }
 }   

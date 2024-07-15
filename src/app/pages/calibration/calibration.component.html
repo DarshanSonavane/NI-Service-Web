@@ -9,6 +9,7 @@
                     <th>Customer Name</th>
                     <th>Machine Type</th>
                     <th>Assigned To</th>
+                    <th>State</th>
                     <th>Status</th>
                     <th>Action</th>
                     <tr *ngFor="let calibration of formattedCalibrationData" style="text-align: center;" class="rowseparator">
@@ -17,6 +18,7 @@
                         <td>{{ calibration['customerId']['customerName'] ? calibration['customerId']['customerName'] : '-' }}</td>
                         <td>{{ calibration['machinTypeValue'] }}</td>
                         <td>{{ calibration['employeeId'] && calibration['employeeId']['employeeName'] ? calibration['employeeId']['employeeName'] : '-' }}</td>
+                        <td>{{ calibration['customerId'] && calibration['customerId']['stateCode'] ? calibration['customerId']['stateCode'] : '-' }}</td>
                         <td [ngClass] = "calibration['status'] == 2 ? 'assign' : 'close'">{{ calibration['status'] == 2 ? 'Assigned' : 'Close' }}</td>
                         <td>
                             <button *ngIf="calibration['status'] == '1' || calibration['status'] == '2'" mat-flat-button color="primary" style="margin-left: 10px;" (click)="generateCalibration(calibration)">Generate & Send</button>

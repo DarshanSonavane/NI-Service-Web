@@ -27,7 +27,6 @@ export class CalibrationComponent {
     try{
       const userRole = localStorage.getItem("userRole");
       const userDetails = localStorage.getItem('userDetails') ? JSON.parse(localStorage.getItem('userDetails')) : null;
-      console.log('userDetails',userDetails);
       if(userRole == 'ADMIN'){
         this.appService.getCalibrationList().subscribe(async (res:any)=>{
           this.generateAndFormatCalibrationData(res.data);
