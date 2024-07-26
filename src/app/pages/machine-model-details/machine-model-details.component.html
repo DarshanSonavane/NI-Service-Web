@@ -1,0 +1,36 @@
+<div class="complaint-action">
+    <div>
+        <mat-card class="assign-card">
+            <mat-card-content>
+                <div>
+                    <img width="200px" height="200px" src="../../../assets/NI_WEB.jpg"/>
+                </div>
+                <div> 
+                    <div>
+                        <h1 style="font-size: bold;">Add Machine Details</h1>
+                    </div>
+                    <form [formGroup]="machineDetailsForm" (submit)="$event.preventDefault()">
+                        <div>
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Select Machine Type</mat-label>
+                                <mat-select (valueChange)="onTypeChange($event)" class="form-control" formControlName="machineType" required>
+                                    <mat-option >Select Machine Type</mat-option>
+                                    <mat-option *ngFor="let machineType of machineTypes" [value]="machineType.label">{{machineType.label}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="full-width">
+                                <mat-label>Machine Number</mat-label>
+                                <input matInput class="form-control" [(ngModel)]="machineNumber" formControlName="machineNumber" type="number" required/>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                    <button [disabled]="!machineDetailsForm.valid" mat-flat-button color="primary" (click)="insertMachineDetails()">Save & Close</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+         
+    </div>
+</div>
+

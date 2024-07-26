@@ -38,6 +38,9 @@ import { ComplaintDetailsPopupComponent } from './pages/complaint-details-popup/
 import { ResetPasswordPopupComponent } from './pages/reset-password-popup/reset-password-popup.component';
 import { CalibrationComponent } from './pages/calibration/calibration.component';
 import { CylinderDetailPopupComponent } from './pages/cylinder-detail-popup/cylinder-detail-popup.component';
+import { MachineModelDetailsComponent } from './pages/machine-model-details/machine-model-details.component';
+import { NotificationComponent } from './pages/notification/notification.component';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -57,7 +60,9 @@ import { CylinderDetailPopupComponent } from './pages/cylinder-detail-popup/cyli
     ComplaintDetailsPopupComponent,
     ResetPasswordPopupComponent,
     CalibrationComponent,
-    CylinderDetailPopupComponent
+    CylinderDetailPopupComponent,
+    MachineModelDetailsComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +85,8 @@ import { CylinderDetailPopupComponent } from './pages/cylinder-detail-popup/cyli
     MatDatepickerModule,
     MatNativeDateModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    MatListModule
   ],
   providers: [AppServices , LoadingIndicatorService],
   bootstrap: [AppComponent]

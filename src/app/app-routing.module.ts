@@ -7,6 +7,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CalibrationComponent } from './pages/calibration/calibration.component';
+import { NotificationComponent } from './pages/notification/notification.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'employee', component: EmployeeComponent },
   { path: 'customers', component: CustomersComponent },
   { path: 'calibration', component: CalibrationComponent },
+  { path: 'notification', component: NotificationComponent },
   { path: '**', redirectTo: '' }
 ];;
 

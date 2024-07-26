@@ -1,8 +1,9 @@
 <div class="container">
-    <button mat-flat-button color="primary" class="cylinder-button" (click)="updateCylinderDetails()" *ngIf="userRole == 'ADMIN'">Cylinder Details</button>
     <div>
         <mat-tab-group class="tabs">
             <mat-tab label="Calibration Request">
+                <button mat-flat-button color="primary" class="cylinder-button" (click)="updateCylinderDetails()" *ngIf="userRole == 'ADMIN'">Cylinder Details</button>
+                <button mat-flat-button color="primary" class="cylinder-button" (click)="addMachineDetails()" *ngIf="userRole == 'ADMIN'">Add Machine</button>
                 <table class="table" *ngIf="formattedCalibrationData.length > 0">
                     <th>Requested Date</th>
                     <th>Customer Code</th>
@@ -57,6 +58,16 @@
                 <mat-card *ngIf="closeComplaintsList.length == 0">
                     <h1>No Close Complaints Found!</h1> 
                 </mat-card> -->
+                <!-- <div>
+                    <div *ngFor="let notification of notificationList">
+                        <h1>{{notification?.notes}}</h1>
+                        <img [src]="notification.file" *ngIf="notification.extension !== 'mp4'"/>
+                        <video width="320" height="240" controls *ngIf="notification.extension == 'mp4'">
+                            <source [src]="notification.file" type="video/mp4">
+                        </video>
+                    </div>
+                </div> -->
+                
             </mat-tab>
         </mat-tab-group>
     </div>

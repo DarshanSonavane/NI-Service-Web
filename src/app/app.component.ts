@@ -1,6 +1,8 @@
 import { ToastrService } from 'ngx-toastr';
 import { Component } from '@angular/core';
 import { Routes, Router } from '@angular/router';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { NotificationComponent } from './pages/notification/notification.component';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +21,7 @@ export class AppComponent {
   customerIconPath:string = '../assets/customer.png';
   logoutIconPath:string = '../assets/logout.png';
   sidebarShow: boolean = false; 
-  constructor(private router : Router , private toast : ToastrService){
+  constructor(private router : Router , private toast : ToastrService , private dialog : MatDialog){
     this.router.navigate(['login']);
     this.newRouter = router;
     this.userRole = localStorage.getItem("userRole");
@@ -100,5 +102,19 @@ export class AppComponent {
     /* if(this.userRole == "ADMIN"){
       this.router.navigateByUrl("/calibration");
     } */
+  }
+
+  goToNotification = () =>{
+    try{
+      this.sidebarShow = !this.sidebarShow;
+      let dialgoRef = this.dialog.open(NotificationComponent).afterClosed().subscribe((result : any)=>{
+        // dialgoRef = undefined;
+        if(result == 'submitted'){
+          this.dialog.closeAll();
+        }
+      });
+    }catch(err){
+      console.log(err);
+    }
   }
 }

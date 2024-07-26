@@ -1,0 +1,30 @@
+<div class="complaint-action">
+    <div>
+        <mat-card class="assign-card">
+            <mat-card-content>
+                <div>
+                    <img width="200px" height="200px" src="../../../assets/NI_WEB.jpg"/>
+                </div>
+                <div> 
+                    <div>
+                        <h1 style="font-size: bold;">Notification</h1>
+                    </div>
+                        <div class="mr-file">
+                            <input type="file" (change)="onFileChange($event)" accept=".png, .jpg, .gif, .mp4 , .jpeg , .JPEG"/>
+                            <img [src]="base64String" *ngIf="fileExtension !== 'mp4' && base64String" class="preview-img" />
+                        </div>
+                        <div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Notes</mat-label>
+                                <textarea matInput [(ngModel)]="notes"></textarea>
+                              </mat-form-field>
+                          
+                        </div>
+                    <button [disabled]="!selectedFile" mat-flat-button color="primary" (click)="uploadFile()">Save & Close</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+         
+    </div>
+</div>
+

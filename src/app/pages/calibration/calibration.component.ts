@@ -6,8 +6,7 @@ import { LoadingIndicatorService } from './../../service/loading-indicator.servi
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { CylinderDetailPopupComponent } from '../cylinder-detail-popup/cylinder-detail-popup.component';
-
-
+import { MachineModelDetailsComponent } from '../machine-model-details/machine-model-details.component';
 
 @Component({
   selector: 'app-calibration',
@@ -18,8 +17,10 @@ export class CalibrationComponent {
   calibrationData:any;
   formattedCalibrationData:any
   userRole:any;
+  // notificationList:any;
   constructor(private appService : AppServices , private toastService : ToastrService , private dialog : MatDialog){
     this.getCalibrationList();
+    // this.getNotificationList();
     this.userRole = localStorage.getItem("userRole");
   }
 
@@ -99,4 +100,28 @@ export class CalibrationComponent {
       console.log(err);
     }
   }
+
+  addMachineDetails = () =>{
+    try{
+      let dialgoRef = this.dialog.open(MachineModelDetailsComponent).afterClosed().subscribe((result : any)=>{
+        // dialgoRef = undefined;
+        if(result == 'submitted'){
+          this.dialog.closeAll();
+        }
+      });
+    }catch(err){
+      console.log(err);
+    }
+  }
+  
+  /* getNotificationList = () =>{
+    try{
+      this.appService.fetchNotification().subscribe((data:any)=>{
+        this.notificationList = data.data;
+        console.log('notificationList' , this.notificationList);
+      })
+    }catch(err){
+      console.log(err);
+    }
+  } */
 }
