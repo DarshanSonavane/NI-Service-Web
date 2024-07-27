@@ -17,10 +17,10 @@ export class CalibrationComponent {
   calibrationData:any;
   formattedCalibrationData:any
   userRole:any;
-  // notificationList:any;
+  notificationList:any;
   constructor(private appService : AppServices , private toastService : ToastrService , private dialog : MatDialog){
     this.getCalibrationList();
-    // this.getNotificationList();
+    this.getNotificationList();
     this.userRole = localStorage.getItem("userRole");
   }
 
@@ -114,7 +114,7 @@ export class CalibrationComponent {
     }
   }
   
-  /* getNotificationList = () =>{
+  getNotificationList = () =>{
     try{
       this.appService.fetchNotification().subscribe((data:any)=>{
         this.notificationList = data.data;
@@ -123,5 +123,5 @@ export class CalibrationComponent {
     }catch(err){
       console.log(err);
     }
-  } */
+  }
 }

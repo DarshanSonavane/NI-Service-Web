@@ -58,7 +58,7 @@
                 <mat-card *ngIf="closeComplaintsList.length == 0">
                     <h1>No Close Complaints Found!</h1> 
                 </mat-card> -->
-                <!-- <div>
+                <div>
                     <div *ngFor="let notification of notificationList">
                         <h1>{{notification?.notes}}</h1>
                         <img [src]="notification.file" *ngIf="notification.extension !== 'mp4'"/>
@@ -66,7 +66,7 @@
                             <source [src]="notification.file" type="video/mp4">
                         </video>
                     </div>
-                </div> -->
+                </div>
                 
             </mat-tab>
         </mat-tab-group>
