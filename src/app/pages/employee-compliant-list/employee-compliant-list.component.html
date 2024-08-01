@@ -11,7 +11,7 @@
                 <th>Action</th>
                 <tr *ngFor="let complaint of complaintsList" style="text-align: center;" class="rowseparator">
                     <td>{{ complaint['serviceRequestId']['createdAt']  | dateFilter}}</td>
-                    <td>{{ complaint['serviceRequestId']['complaintType']['name'] }}</td>
+                    <td>{{ complaint['serviceRequestId'] && complaint['serviceRequestId']['complaintType'] && complaint['serviceRequestId']['complaintType']['name'] ? complaint['serviceRequestId']['complaintType']['name'] : 'NA' }}</td>
                     <td>{{ complaint['serviceRequestId']['customerId'] ? complaint['serviceRequestId']['customerId']['customerCode'] : '-' }}</td>
                     <td>{{ complaint['serviceRequestId']['customerId']['customerName'] ? complaint['serviceRequestId']['customerId']['customerName'] : '-' }}</td>
                     <td>{{ complaint['machineType'] == 0 ? 'Petrol' : 'Disel' }}</td>
@@ -36,7 +36,7 @@
                 <th>Status</th>
                 <tr *ngFor="let complaint of closeComplaintsList" style="text-align: center;" class="rowseparator">
                     <td>{{ complaint['serviceRequestId']['createdAt']  | dateFilter}}</td>
-                    <td>{{ complaint['serviceRequestId']['complaintType']['name'] }}</td>
+                    <td>{{ complaint['serviceRequestId'] && complaint['serviceRequestId']['complaintType'] && complaint['serviceRequestId']['complaintType']['name'] ? complaint['serviceRequestId']['complaintType']['name'] : 'NA' }}</td>
                     <td>{{ complaint['serviceRequestId']['customerId'] ? complaint['serviceRequestId']['customerId']['customerCode'] : '-' }}</td>
                     <td>{{ complaint['serviceRequestId']['customerId']['customerName'] ? complaint['serviceRequestId']['customerId']['customerName'] : '-' }}</td>
                     <td>{{ complaint['machineType'] == 0 ? 'Petrol' : 'Disel' }}</td>

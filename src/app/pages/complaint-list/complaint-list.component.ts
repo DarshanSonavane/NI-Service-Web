@@ -34,8 +34,8 @@ export class ComplaintListComponent {
       this.loader.showLoadingIndicator()
       this.service.getAllComplaints(userDetails).subscribe((res : any)=>{
         this.loader.closeLoadingIndicator();
-        this.complaintsList = res.data;
-        this.closeComplaintsList = res.data.filter(data=> data.status == '0' || data.status == 0);
+        this.complaintsList = res.data.filter((data:any)=> data.status == '1' || data.status == '2');
+        this.closeComplaintsList = res.data.filter((data:any)=> data.status == '0' || data.status == 0);
         this.excelData = this.prepareExcelData();
       })
     }catch(err){
@@ -120,7 +120,7 @@ export class ComplaintListComponent {
       obj['Date Of Complaint'] = this.convertDate(d.createdAt);
       obj['Complaint Status'] = d.status == '0' ? 'Close' : 'Open';
       obj['Machine Type'] = d.machineType ? d.machineType == '0' ? 'Petrol' : 'Disel' : '-';
-      obj['Complaint Type'] = d.complaintType.name;
+      obj['Complaint Type'] = d.complaintType && d.complaintType.name ? d.complaintType.name : '-';
       obj['Customer Code'] = d.customerId ? d.customerId.customerCode : '-';
       obj['Customer Name'] = d.customerId && d.customerId.customerName ? d.customerId.customerName : '-';
       obj['Employee Name (Assigned To)'] = employeeFirstName && employeeLastName ? `${employeeFirstName} ${employeeLastName}`  : '-'

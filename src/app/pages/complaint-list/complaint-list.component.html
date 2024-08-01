@@ -40,7 +40,7 @@
                 <th>Status</th>
                 <tr *ngFor="let complaint of closeComplaintsList" style="text-align: center;" class="rowseparator" (click)="openDetailsPopup(complaint)">
                     <td>{{ complaint['createdAt']  | dateFilter}}</td>
-                    <td>{{ complaint['complaintType']['name'] }}</td>
+                    <td>{{ complaint['complaintType'] && complaint['complaintType']['name'] ? complaint['complaintType']['name'] : 'NA' }}</td>
                     <td>{{ complaint['customerId'] ? complaint['customerId']['customerCode'] : '-' }}</td>
                     <td>{{ complaint['customerId']['customerName'] ? complaint['customerId']['customerName'] : '-' }}</td>
                     <td>{{ complaint['machineType'] == 0 ? 'Petrol' : 'Disel' }}</td>
