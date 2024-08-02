@@ -18,9 +18,9 @@ export class CalibrationComponent {
   formattedCalibrationData:any
   userRole:any;
   notificationList:any;
+  closeFormattedCalibrationData:any;
   constructor(private appService : AppServices , private toastService : ToastrService , private dialog : MatDialog){
     this.getCalibrationList();
-    this.getNotificationList();
     this.userRole = localStorage.getItem("userRole");
   }
 
@@ -79,6 +79,7 @@ export class CalibrationComponent {
   generateAndFormatCalibrationData = (data:any) =>{
     try{
       this.formattedCalibrationData = [];
+      this.closeFormattedCalibrationData = [];
           this.calibrationData = data;
           for(let i = 0 ; i < this.calibrationData.length ; i++){
               let d = this.calibrationData[i];
@@ -94,7 +95,13 @@ export class CalibrationComponent {
                 d['employeeId']['employeeName'] = d['employeeId']['firstName'] + ' ' +d['employeeId']['lastName'];
               }
               console.log('here2' , d);
-              this.formattedCalibrationData.push(d);
+
+              if(d.status == '1'|| d.status == '2'){
+                this.formattedCalibrationData.push(d);
+              }else {
+                this.closeFormattedCalibrationData.push(d);
+              }
+              
           }
     }catch(err){
       console.log(err);
@@ -109,17 +116,6 @@ export class CalibrationComponent {
           this.dialog.closeAll();
         }
       });
-    }catch(err){
-      console.log(err);
-    }
-  }
-  
-  getNotificationList = () =>{
-    try{
-      this.appService.fetchNotification().subscribe((data:any)=>{
-        this.notificationList = data.data;
-        console.log('notificationList' , this.notificationList);
-      })
     }catch(err){
       console.log(err);
     }
