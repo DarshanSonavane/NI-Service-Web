@@ -2,10 +2,10 @@
     <div>
         <mat-card class="employee-card">
             <mat-card-content>
-                <div>
-                    <div class="left">
+                <div class="top-area">
+                    <!-- <div class="left">
                         <img width="200px" height="200px" src="../../../assets/NI_WEB.jpg"/>
-                    </div>
+                    </div> -->
                     <div class="right"> 
                         <div>
                             <h1 style="font-size: bold;">Employee</h1>
@@ -41,7 +41,7 @@
                                     </mat-datepicker>
                                 </mat-form-field>
                                 <mat-form-field class="full-width">
-                                    <mat-label>Select Gender*</mat-label>
+                                    <mat-label>Select Gender</mat-label>
                                     <mat-select (valueChange)="onGenderSelect($event)" formControlName="gender">
                                         <mat-option *ngFor="let gender of genderList" [value]="gender.id">{{gender.name}}</mat-option>
                                     </mat-select>
@@ -66,7 +66,7 @@
                                 <td>{{employee.email}}</td>
                                 <td>{{employee.phone}}</td>
                                 <td>
-                                    <button mat-flat-button color="warn" (click)="deleteEmployee(employee)">Delete</button>
+                                    <button mat-flat-button color="warn" (click)="deleteEmployee(employee)"><img src="../../../assets/delete.png" width="20px" style="margin-top: 3px;"></button>
                                 </td>
                             </tr>
                         </tbody>

@@ -97,22 +97,28 @@ export class AppComponent {
 
   goToCalibration = () =>{
     this.sidebarShow = !this.sidebarShow;
-    // this.userRole = localStorage.getItem("userRole");
-    this.router.navigateByUrl("/calibration");
-    /* if(this.userRole == "ADMIN"){
+    this.userRole = localStorage.getItem("userRole");
+    if(this.userRole == "ADMIN"){
       this.router.navigateByUrl("/calibration");
-    } */
+    }else {
+      this.toast.error("You don't have permission to access Calibration!")
+    }
   }
 
   goToNotification = () =>{
     try{
       this.sidebarShow = !this.sidebarShow;
-      let dialgoRef = this.dialog.open(NotificationComponent).afterClosed().subscribe((result : any)=>{
-        // dialgoRef = undefined;
-        if(result == 'submitted'){
-          this.dialog.closeAll();
-        }
-      });
+      this.userRole = localStorage.getItem("userRole");
+      if(this.userRole == "ADMIN"){
+        let dialgoRef = this.dialog.open(NotificationComponent).afterClosed().subscribe((result : any)=>{
+          // dialgoRef = undefined;
+          if(result == 'submitted'){
+            this.dialog.closeAll();
+          }
+        });
+      }else {
+        this.toast.error("You don't have permission to access Notification!");
+      }
     }catch(err){
       console.log(err);
     }

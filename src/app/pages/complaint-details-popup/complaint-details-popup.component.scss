@@ -1,6 +1,24 @@
 .detail-card{
-    width: 800px;
+    width: 600px;
     display: flex;
     justify-content: center;
     text-align: center;
 }
+.mat-mdc-card-content table {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-style: normal; 
+    font-size: 12px !important;
+}
+
+table tr {outline: 0px solid #c9c9c9 !important;}
+table tr td {border: 1px solid #c9c9c9 !important;}
+table {border-collapse: collapse !important;}
+h1 {font-family: "Inter", sans-serif; font-weight: 600; margin-top: 10px;}
+
+@media only screen and (max-width: 599px) {
+    .detail-card {width:100% !important;}
+    h1 {font-size: 20px !important;} 
+}
+
+

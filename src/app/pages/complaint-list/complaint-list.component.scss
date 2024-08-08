@@ -1,73 +1,116 @@
-.table {
-    width: 100%;
-}
-.container{
-    flex: 1 0 auto;
-}
-::ng-deep .mat-toolbar{
-    z-index: 998;
-    position: relative,
-}
-::ng-deep .mat-tab-group{
-    margin-top:55px ;
-}
-  
-::ng-deep .mat-tab-header{
-        z-index: 999;
-        width:100vw;
-        position: relative  !important;
-        background-color: red !important;
-}
-::ng-deep .mat-tab-body-wrapper{
-      position: relative !important;
-      margin-top:55px;
-}
-::ng-deep .mat-mdc-tab-label-container{
-      margin: 50px;
-} 
-
-.tabs{
-    margin: 50px;
-}
-
-.rowseparator{
-    border-bottom: 1px solid #AFAFAF;
-    height: 50px;
-}
-.table .tr{
-    border-bottom: 1px solid #AFAFAF;
-    height: 50px;
-}
-
-.assign {
-    color: red;
-    font-weight: bold;
-}
-
-.close {
-    color: green;
-    font-weight: bold;
-}
-
 /* Styles for tab labels */
 .mat-tab-label {
     min-width: 25px !important;
     padding: 5px;
     background-color: transparent;
-    color: red;
+    color: #000;
     font-weight: 700;
-}
-
-/* Styles for the active tab label */
-.mat-tab-label.mat-tab-label-active {
+  }
+  
+  /* Styles for the active tab label */
+  .mat-tab-label.mat-tab-label-active {
     min-width: 25px !important;
     padding: 5px;
-    background-color: transparent;
-    color: red;
+    background-color: #8DC641;
+    color: #fff;
+  
     font-weight: 700;
-}
-
-/* Styles for the ink bar */
-.mat-ink-bar {
+  }
+  
+  /* Styles for the ink bar */
+  .mat-ink-bar {
     background-color: green;
-}
+  }
+  .table {
+      width: 96%;
+      font-family: "Inter", sans-serif;
+      font-size: 12px !important;
+  }
+  .container{
+      flex: 1 0 auto;
+      background: #E5E5E5;
+      padding:30px 0;
+      margin-top: 30px;
+      height: 100%;
+  }
+  ::ng-deep .mat-toolbar{
+      z-index: 998;
+      position: relative,
+    }
+    ::ng-deep .mat-tab-group{
+      margin-top:55px ;
+    }
+    
+    ::ng-deep .mat-tab-header{
+          z-index: 999;
+          width:100vw;
+          position: relative  !important;
+          background-color: red !important;
+    }
+    ::ng-deep .mat-tab-body-wrapper{
+        position: relative !important;
+        margin-top:55px;
+    }
+    ::ng-deep .mat-mdc-tab-label-container{
+        margin: 20px;
+    } 
+  
+  .tabs{
+      margin: 20px;
+  }
+  
+  .rowseparator{
+      border-bottom: 1px solid #AFAFAF;
+      height: 50px;
+  }
+  .table .tr{
+      border-bottom: 1px solid #AFAFAF;
+      height: 50px;
+  }
+  
+  .assign {
+      color: red;
+      font-weight: bold;
+  }
+  
+  .close {
+      color: green;
+      font-weight: bold;
+  }
+  .tabs {background-color: #fff !important;}
+  .mdc-tab__text-label {font-family: "Inter", serif !important;}
+  table, th, td {
+      border: 1px solid #AFAFAF;
+      border-collapse: collapse;
+      word-break: break-all;
+    }
+    table { margin: 2%;}
+    table th {padding:5px;}
+    table td {padding:5px;} 
+    
+    table caption {
+      padding: .5em 0;
+  }
+  
+  table.dataTable th,
+  table.dataTable td {
+    white-space: nowrap;
+  }
+  
+  .p {
+    text-align: center;
+    padding-top: 140px;
+    font-size: 14px;
+  }
+  
+  .downloadbutton{background-color: #000 !important; color: #fff !important; float: right; margin: 0 25px 20px;}
+  .assign-button{background-color: #000 !important; color: #fff !important;}
+  .reassign-button{background-color: #ffc90f !important; color: #fff !important;}
+  .close-button{background-color: #8ec840 !important; color: #fff !important; margin-left: 10px;}
+  .mdc-button {min-width: AUTO !important; padding: 10px !important;}
+  .mat-mdc-tab-label-container .mdc-tab-indicator--active {background-color: #8DC641 !important;}
+  .mdc-tab-indicator .mdc-tab-indicator__content {display: none !important;}
+  .mdc-tab__text-label {color:#fff !important;}
+  
+  
+  

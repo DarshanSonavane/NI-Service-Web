@@ -1,6 +1,7 @@
 .container{
     margin-top: 60px;
-    background: #e1e1e1;
+    background: #E5E5E5;
+    height: 100%;
 }
 
 .view-complaints-button{
@@ -37,6 +38,7 @@
   
 .bottom {
     height: 50vh;    
+    display: none;  
 }
 
 .left{
@@ -48,7 +50,7 @@
     align-items: center; */
 }
 .right{
-    width: 50%;
+    width: 35%;
     min-height: 200px;
     float: left;
 }
@@ -72,3 +74,29 @@
     font-size: 32px;
     border: 2px solid #666;
 }
+
+h2 {font-family: "Inter", serif !important; text-align: center; color:#000}
+.green {background-color: #8ec840 !important; color:#fff !important}
+.black {background-color: #000 !important; color:#fff !important}
+.ng-tns-c1205077789-0{
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-style: normal; 
+}
+@media only screen and (max-width: 767px){
+    .pie-chart-card {width: 90%;}
+    .example-card {width:90%;}  
+    .left {width:100%; display: block;}
+    .right{width:100%; display: block;}  
+    h2 {text-align: center;}
+    .mat-mdc-form-field {width: 100%;}
+}
+@media only screen and (max-width: 992px) and (min-width:768px){
+    .left {width:100%; display: block;}
+    .right{width:62%; margin:0 19%;}
+    .pie-chart-card {max-width:100% !important;}
+}
+@media only screen and (max-width: 1024px) and (min-width:993px){
+    .left{width:58%;}
+    .right{width:42%;}
+}   

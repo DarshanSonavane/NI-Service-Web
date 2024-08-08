@@ -1,11 +1,11 @@
-<div class="customer-container">
+<div class="customer-container" style="background: #E5E5E5;">
     <div>
         <mat-card class="customer-card">
             <mat-card-content>
-                <div>
-                    <div class="left">
+                <div class="padd-area">
+                    <!-- <div class="left">
                         <img width="200px" height="200px" src="../../../assets/NI_WEB.jpg"/>
-                    </div>
+                    </div> -->
                     <div class="right"> 
                         <div style="margin-top: 20px;">
                             <h1 style="font-size: bold;">Create / Update Customer</h1>
@@ -67,19 +67,19 @@
                                     <mat-label>Combo Machine No.</mat-label>
                                     <input matInput class="form-control" formControlName="comboMachineNumber" type="text"/>
                                 </mat-form-field>
-                                <mat-form-field class="example-full-width" style="margin-right: 10px;">
+                                <!-- <mat-form-field class="example-full-width" style="margin-right: 10px;">
                                   <mat-label>Select Machine Type</mat-label>
                                   <mat-select (valueChange)="onMachineTypeChange($event)" class="form-control" formControlName="machineModel" required>
                                       <mat-option >Select Machine Type</mat-option>
                                       <mat-option *ngFor="let machine of machineTypes" [value]="machine.type">{{machine.type}}</mat-option>
                                   </mat-select>
-                              </mat-form-field>
+                              </mat-form-field> -->
                                 <input class="form-control" formControlName="customerId" type="hidden"/>
                                 
                             </div>
                         </form>
-                        <button mat-flat-button color="primary" [disabled]="!customerForm.valid" (click)="createUpdateCustomer()">Save Customer</button>
-                        <button mat-flat-button color="warn" (click)="reset()" style="margin-left: 20px;">Reset</button>
+                        <button mat-flat-button class="green" color="primary" [disabled]="!customerForm.valid" (click)="createUpdateCustomer()">Save Customer</button>
+                        <button mat-flat-button class="black" color="warn" (click)="reset()" style="margin-left: 20px;">Reset</button>
                     </div>
                     <div class="row">
                         <div class="search-container">

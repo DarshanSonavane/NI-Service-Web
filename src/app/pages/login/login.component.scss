@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #e1e1e1;
+    background: #fff;
 }
 .login-card{
     width: 600px;
@@ -18,7 +18,7 @@
     align-items: center;
 }
 .right{
-    width: 50%;
+    width: 100%;
     min-height: 200px;
     float: left;
 }
@@ -26,3 +26,40 @@
 .form-field-width{
     width: 96%;
 }
+
+.mat-mdc-card-content {display: flex;}
+
+.h1 {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal; 
+    text-align: center;
+}
+
+form .mdc-text-field--filled {
+    background-color: transparent !important;
+}
+.ng-tns-c1205077789-0 {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-style: normal; 
+}
+.ng-tns-c1205077789-1 {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-style: normal; 
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color :white !important;
+}
+.green {background-color: #8DC641 !important; width: 96%; color:#fff !important}
+.black {background-color: #fff !important; width:96%; margin-top: 30px; font-family: "Inter", sans-serif; color:#828282 !important}
+
+@media only screen and (max-width: 599px){
+    .left {width:100%;}
+    .right{width:100%; text-align: center;}  
+    .login-card {width:80%; margin: 0 10%;} 
+    .mat-mdc-card-content {display: block;}
+}
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {background-color: transparent !important;}

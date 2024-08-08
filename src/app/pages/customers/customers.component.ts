@@ -41,7 +41,7 @@ export class CustomersComponent implements AfterViewInit, OnInit{
       dieselMachineNumber : new FormControl(''),
       comboMachineNumber : new FormControl(''),
       state : new FormControl('', [Validators.required]),
-      machineModel: new FormControl('')
+      // machineModel: new FormControl('')
     })
 
     this.getCustomerList();
@@ -86,7 +86,7 @@ export class CustomersComponent implements AfterViewInit, OnInit{
         obj['dieselMachineNumber'] = this.customerForm.controls['dieselMachineNumber']?.value;
         obj['comboMachineNumber'] = this.customerForm.controls['comboMachineNumber']?.value;
         obj['stateCode'] = this.selectedStatecode ? this.selectedStatecode : this.customerForm.controls['state']?.value;
-        obj['machineModel'] = this.customerForm.controls['machineModel']?.value;
+        /* obj['machineModel'] = this.customerForm.controls['machineModel']?.value; */
         this.appService.createUpdateCustomer(obj).subscribe((res)=>{
           if(res['data']){
             this.toast.success(res['message']);

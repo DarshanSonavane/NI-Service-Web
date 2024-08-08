@@ -23,11 +23,12 @@
                         <td [ngClass] = "calibration['status'] == 2 ? 'assign' : 'close'">{{ calibration['status'] == 2 ? 'Assigned' : 'Close' }}</td>
                         <td>
                             <button *ngIf="calibration['status'] == '1' || calibration['status'] == '2'" mat-flat-button color="primary" style="margin-left: 10px;" (click)="generateCalibration(calibration)">Generate & Send</button>
+                            <button *ngIf="(calibration['status'] == '1' || calibration['status'] == '2') && userRole == 'ADMIN'" mat-flat-button color="primary" style="margin-left: 10px;" (click)="deleteCalibration(calibration)">Delete</button>
                         </td>
                     </tr>
                 </table>
                 
-                <mat-card *ngIf="calibrationData.length == 0">
+                <mat-card *ngIf="formattedCalibrationData.length == 0">
                     <h1>No Calibration Request Found!</h1> 
                 </mat-card>
             </mat-tab>
@@ -51,12 +52,12 @@
                         <td>{{ calibration['customerId'] && calibration['customerId']['stateCode'] ? calibration['customerId']['stateCode'] : '-' }}</td>
                         <td [ngClass] = "calibration['status'] == 2 ? 'assign' : 'close'">{{ calibration['status'] == 2 ? 'Assigned' : 'Close' }}</td>
                         <td>
-                            <button *ngIf="calibration['status'] == '1' || calibration['status'] == '2'" mat-flat-button color="primary" style="margin-left: 10px;" (click)="generateCalibration(calibration)">Generate & Send</button>
+                            <button *ngIf="userRole == 'ADMIN'" mat-flat-button color="primary" style="margin-left: 10px;" (click)="deleteCalibration(calibration)">Delete</button>
                         </td>
                     </tr>
                 </table>
                 
-                <mat-card *ngIf="calibrationData.length == 0">
+                <mat-card *ngIf="closeFormattedCalibrationData.length == 0">
                     <h1>No Closed Calibration Request Found!</h1> 
                 </mat-card>
             </mat-tab>

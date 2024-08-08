@@ -15,10 +15,10 @@ import { MachineModelDetailsComponent } from '../machine-model-details/machine-m
 })
 export class CalibrationComponent {
   calibrationData:any;
-  formattedCalibrationData:any
+  formattedCalibrationData:any = [];
   userRole:any;
   notificationList:any;
-  closeFormattedCalibrationData:any;
+  closeFormattedCalibrationData:any = [];
   constructor(private appService : AppServices , private toastService : ToastrService , private dialog : MatDialog){
     this.getCalibrationList();
     this.userRole = localStorage.getItem("userRole");
@@ -116,6 +116,19 @@ export class CalibrationComponent {
           this.dialog.closeAll();
         }
       });
+    }catch(err){
+      console.log(err);
+    }
+  }
+
+  deleteCalibration = (calibration:any) =>{
+    try{
+      const obj = {
+        calibrationId : calibration._id
+      }
+      this.appService.deleteCalibrationById(obj).subscribe((res:any)=>{
+        this.toastService.success('Calibration Request Deleted Successfully!');
+      })
     }catch(err){
       console.log(err);
     }

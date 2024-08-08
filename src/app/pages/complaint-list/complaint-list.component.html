@@ -1,8 +1,8 @@
 <div class="container">
-    <mat-tab-group class="tabs">
+    <mat-tab-group class="tabs tab-active">
         <mat-tab label="All Complaints">
-            <button *ngIf="complaintsList.length > 0" mat-flat-button color="primary" style="margin-left: 10px;" (click)="exportExcel()">Download</button>
-            <table class="table" *ngIf="complaintsList.length > 0">
+            <button *ngIf="complaintsList.length > 0" mat-flat-button class="downloadbutton" color="primary" style="margin-left: 10px;" (click)="exportExcel()"><img src="../../../assets/download.png" style="width:15px; margin-right: 5px;">Download</button>
+            <table class="table table-bordered table-hover dt-responsive" *ngIf="complaintsList.length > 0">
                 <th>Date Of Complaint</th>
                 <th>Complaint Type</th>
                 <th>Customer Code</th>
@@ -18,9 +18,9 @@
                     <td (click)="openDetailsPopup(complaint)">{{ complaint['machineType'] == 0 ? 'Petrol' : 'Diesel' }}</td>
                     <td (click)="openDetailsPopup(complaint)" [ngClass] = "complaint['status'] == 0 ? 'close' : 'assign'">{{ complaint['status'] == 0 ? 'Close' : 'Open' }}</td>
                     <td>
-                        <button *ngIf="complaint['status'] == '1' && complaint['status'] !== '2'" mat-flat-button color="warn" (click)="assign(complaint,false)">Assign</button>
-                        <button *ngIf="complaint['status'] == '2'" mat-flat-button color="accent" style="margin-left: 10px;" (click)="assign(complaint,true)">Re Assign</button>
-                        <button *ngIf="complaint['status'] == '1' || complaint['status'] == '2'" mat-flat-button color="primary" style="margin-left: 10px;" (click)="closeServiceRequest(complaint)">Close</button>
+                        <button *ngIf="complaint['status'] == '1' && complaint['status'] !== '2'" mat-flat-button color="warn" (click)="assign(complaint,false)" class="assign-button" title="Assign"><img src="../../../assets/assign-icon.png" style="padding-top: 5px;"></button>
+                        <button *ngIf="complaint['status'] == '2'" mat-flat-button color="accent" style="margin-left: 10px;" (click)="assign(complaint,true)" class="reassign-button" title="Re-Assign"><img src="../../../assets/assign-icon.png" style="padding-top: 5px;"></button>
+                        <button *ngIf="complaint['status'] == '1' || complaint['status'] == '2'" mat-flat-button color="primary" style="margin-left: 10px;" class="close-button" title="Close" (click)="closeServiceRequest(complaint)"><img src="../../../assets/close.png" style="padding-top: 5px; width: 16px;"></button>
                     </td>
                 </tr>
             </table>
@@ -31,7 +31,7 @@
         </mat-tab>
         <!-- <mat-tab label="Open Complaints">Open Complaints</mat-tab> -->
         <mat-tab label="Close Complaints">
-            <table class="table" *ngIf="closeComplaintsList.length > 0">
+            <table class="table table-bordered table-hover dt-responsive" *ngIf="closeComplaintsList.length > 0">
                 <th>Date Of Complaint</th>
                 <th>Complaint Type</th>
                 <th>Customer Code</th>

@@ -1,7 +1,7 @@
 <div class="container">
-    <mat-tab-group class="tabs">
+    <mat-tab-group class="tabs tab-active">
         <mat-tab label="All Complaints">
-            <table class="table" *ngIf="complaintsList.length > 0">
+            <table class="table table-bordered table-hover dt-responsive" *ngIf="complaintsList.length > 0">
                 <th>Date Of Complaint</th>
                 <th>Complaint Type</th>
                 <th>Customer Code</th>
@@ -17,7 +17,7 @@
                     <td>{{ complaint['machineType'] == 0 ? 'Petrol' : 'Disel' }}</td>
                     <td [ngClass] = "complaint['serviceRequestId']['status'] == 0 ? 'close' : 'assign'">{{ complaint['serviceRequestId']['status'] == 0 ? 'Close' : 'Open' }}</td>
                     <td *ngIf="complaint['serviceRequestId']['status'] !== '0'">
-                        <button mat-flat-button color="primary" style="margin-left: 10px;" (click)="showTakeActionPopup(complaint)">Take Action</button>
+                        <button mat-flat-button class="reassign-button" title="Re-Assign" color="primary" style="margin-left: 10px;" (click)="showTakeActionPopup(complaint)">Take Action</button>
                     </td>
                 </tr>
             </table>
@@ -27,7 +27,7 @@
         </mat-tab>
         <!-- <mat-tab label="Open Complaints">Open Complaints</mat-tab> -->
         <mat-tab label="Close Complaints">
-            <table class="table" *ngIf="closeComplaintsList.length > 0">
+            <table class="table table-bordered table-hover dt-responsive" *ngIf="closeComplaintsList.length > 0">
                 <th>Date Of Complaint</th>
                 <th>Complaint Type</th>
                 <th>Customer Code</th>

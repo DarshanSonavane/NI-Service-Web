@@ -3,24 +3,24 @@
     <div class="left">
       <mat-card class="pie-chart-card">
           <mat-card-content>  
-            <h2 style="margin: 20px;">Service Request Graphics</h2>
+            <h2 style="margin: 0px 0px 20px;">Service Request Graphics</h2>
             <canvas id="myChart">{{chart}}</canvas>
             <h2 *ngIf="!showChart">No Service Request Raised!</h2>
           </mat-card-content>
       </mat-card>
     </div>
-    <div class="left">
+    <div class="right">
       <mat-card class="pie-chart-card">
           <mat-card-content> 
             <form [formGroup]="customerForm" (submit)="$event.preventDefault()">
               <div>
-                <h2 style="margin: 20px;">Find Customer Visits</h2>
+                <h2 style="margin: 0px 0px 20px;">Find Customer Visits</h2>
                   <mat-form-field class="form-field-width">
                       <mat-label>Customer Code</mat-label>
                       <input matInput class="form-control" formControlName="customerCode" type="text" required/>
                   </mat-form-field>
-                  <button mat-flat-button color="primary" class="submit-btn" [disabled]="!customerForm.valid" (click)="getCustomerVisits()">Submit</button>
-                  <button mat-flat-button color="warn" class="submit-btn" (click)="reset()">Reset</button>
+                  <button mat-flat-button class="submit-btn green" [disabled]="!customerForm.valid" (click)="getCustomerVisits()">Submit</button>
+                  <button mat-flat-button class="submit-btn black" (click)="reset()">Reset</button>
               </div>
               <div class="circle-text-div" *ngIf="visitCount">
                 <span>{{ visitCount }} / {{ totalVisitCount }}</span>
@@ -30,8 +30,9 @@
       </mat-card>
     </div>
   </div>
+  <div style="clear: both;"></div>
     <div style="margin-top: 50px;" class="bottom">
-        <!-- <div class="row card-row">
+        <div class="row card-row">
             <mat-card class="example-card" *ngFor="let employee of employeeList" (click)="goToEmployeeDetails(employee)">
                 <mat-card-header>
                   <div mat-card-avatar class="example-header-image"></div>
@@ -45,7 +46,21 @@
                   <div style="font-weight: bold;">Gender : {{employee.gender == '1' ? 'Male' : 'Female'}}</div>
                 </mat-card-content>
             </mat-card>
-            
-        </div> -->
+            <!-- <mat-card class="example-card">
+                <mat-card-header>
+                  <div mat-card-avatar class="example-header-image"></div>
+                  <mat-card-title>Shiba Inu</mat-card-title>
+                  <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                  <p>
+                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                    bred for hunting.
+                  </p>
+                </mat-card-content>
+            </mat-card> -->
+        </div>
     </div>
 </div>

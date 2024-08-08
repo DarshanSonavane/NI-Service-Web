@@ -128,4 +128,9 @@ export class AppServices{
         let url = this.BASE_URL + "/fetch-notification";
         return this.http.get(url);
     }
+
+    deleteCalibrationById = (data : any)=>{
+        let url = this.BASE_URL + '/delete-calibration-request';
+        return this.http.post(url,data);
+    }
 }   

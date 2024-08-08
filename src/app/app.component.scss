@@ -1,6 +1,7 @@
 .spacer {
     flex: 1 1 auto;
 }
+.nav-color {color:#000; font-family: "Mukta", sans-serif;}
 
 /* Side Nav CSS Starts HERE */
 
@@ -17,10 +18,10 @@
 .sidebar-slider {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     bottom: 0;
     background-color: #fff;
-    transform: translateX(-100%);
+    transform: translateX(100%);
     transition: 0.5s 300ms transform;
     width: 300px;
     z-index: 100;
@@ -68,3 +69,4 @@
 }
 
 /* Side Nav CSS Ends HERE */
+.drawer-content span {cursor: pointer;}
