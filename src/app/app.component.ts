@@ -97,12 +97,7 @@ export class AppComponent {
 
   goToCalibration = () =>{
     this.sidebarShow = !this.sidebarShow;
-    this.userRole = localStorage.getItem("userRole");
-    if(this.userRole == "ADMIN"){
-      this.router.navigateByUrl("/calibration");
-    }else {
-      this.toast.error("You don't have permission to access Calibration!")
-    }
+    this.router.navigateByUrl("/calibration");
   }
 
   goToNotification = () =>{

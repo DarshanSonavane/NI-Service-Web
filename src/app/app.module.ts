@@ -41,7 +41,7 @@ import { CylinderDetailPopupComponent } from './pages/cylinder-detail-popup/cyli
 import { MachineModelDetailsComponent } from './pages/machine-model-details/machine-model-details.component';
 import { NotificationComponent } from './pages/notification/notification.component';
 import { MatListModule } from '@angular/material/list';
-
+import { SharedTableComponent } from './pages/shared-table/shared-table.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +62,8 @@ import { MatListModule } from '@angular/material/list';
     CalibrationComponent,
     CylinderDetailPopupComponent,
     MachineModelDetailsComponent,
-    NotificationComponent
+    NotificationComponent,
+    SharedTableComponent
   ],
   imports: [
     BrowserModule,
@@ -86,8 +87,9 @@ import { MatListModule } from '@angular/material/list';
     MatNativeDateModule,
     MatPaginatorModule,
     MatTableModule,
-    MatListModule
+    MatListModule,
   ],
+  exports : [ MatTableModule ],
   providers: [AppServices , LoadingIndicatorService],
   bootstrap: [AppComponent]
 })

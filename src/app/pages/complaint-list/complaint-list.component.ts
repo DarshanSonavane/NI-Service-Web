@@ -9,6 +9,7 @@ import { LoadingIndicatorService } from './../../service/loading-indicator.servi
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import * as XLSX from 'xlsx';
+import { Column } from 'src/app/pages/column.type';
 
 @Component({
   selector: 'app-complaint-list',
@@ -19,10 +20,23 @@ export class ComplaintListComponent {
   complaintsList = [];
   closeComplaintsList = [];
   userDetails:any
-  dataSource :any ;
+  // dataSource :any ;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   excelData:any;
+
+  public dataSource = new MatTableDataSource();
+
+  columns:Column[]=[
+    {id:'dateOfComplaint',visible : true ,label:'Date Of Complaint',hideOrder:0 , width : 30},
+    {id:'complaintType', visible : true ,label:'Complaint Type',hideOrder:1 , width : 20},
+    {id:'customerCode',visible : true ,label:'Customer Code',hideOrder:3 , width : 10},
+    {id:'customerName',visible : true ,label:'Customer Name',hideOrder:4 , width : 30},
+    {id:'Machine Type',visible : true ,label:'Phone No.',hideOrder:5 , width : 20},
+    {id:'status',visible : true ,label:'Status',hideOrder:6 , width : 10},
+    {id:'action',visible : true ,label:'Action',hideOrder:0 , width : 30}
+  ]
+
   constructor(private service : AppServices , private dialog : MatDialog , private toast : ToastrService , private loader : LoadingIndicatorService){
     this.userDetails  = localStorage.getItem('userDetails') ? localStorage.getItem('userDetails') : null
     this.getAllComplaints(JSON.parse(this.userDetails));
@@ -35,8 +49,19 @@ export class ComplaintListComponent {
       this.service.getAllComplaints(userDetails).subscribe((res : any)=>{
         this.loader.closeLoadingIndicator();
         this.complaintsList = res.data.filter((data:any)=> data.status == '1' || data.status == '2');
+        this.dataSource.data = this.complaintsList;
         this.closeComplaintsList = res.data.filter((data:any)=> data.status == '0' || data.status == 0);
         this.excelData = this.prepareExcelData();
+        /* if(res.data && res.data.length > 0){
+          const rows = [];
+          res.data.forEach((element:any , index : number) =>{
+            console.log('element=======' ,element);
+            element['recId'] = index +1;
+            rows.push(element)
+          });
+
+          this.dataSource.data = rows;
+        } */
       })
     }catch(err){
       console.log(err);

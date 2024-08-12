@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http'; 
 import { Injectable } from '@angular/core';
+import { Column } from '../pages/column.type';
+import { Observable } from 'rxjs';
 
 @Injectable() 
 export class AppServices{
@@ -7,7 +9,7 @@ export class AppServices{
     BASE_URL = "http://16.170.250.91:3000";
     constructor(private http : HttpClient){}
 
-    getAllComplaints = (userDetails : any) => {
+    getAllComplaints = (userDetails : any) =>  {
         let url = "";
         console.log("userDetails._id", userDetails._id , userDetails.role)
         if(userDetails.role == "0"){
@@ -18,6 +20,18 @@ export class AppServices{
         
         return this.http.get(url);
     }
+
+    /* getAllComplaints(userDetails:any) : Observable<Column[]>{
+        let url = "";
+        console.log("userDetails._id", userDetails._id , userDetails.role)
+        if(userDetails.role == "0"){
+            url = this.BASE_URL + '/get-all-complaints';
+        }else {
+            url = this.BASE_URL + '/get-assigned-complaints?employeeId='+userDetails._id;
+        }
+        
+        return this.http.get<Column[]>(url);
+    } */
 
     login = (data : any) =>{
         let url = this.BASE_URL + '/login';
