@@ -8,6 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class SpinningIndicatorComponent {
 
+  spinnerPath :string = '../../../assets/Green-Earth-Spinner.gif';
   constructor(
     public dialogRef : MatDialogRef<SpinningIndicatorComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any

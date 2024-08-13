@@ -5,3 +5,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+    border-radius: var(--mdc-dialog-container-shape, 0px) !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+    box-shadow: none !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+    background: transparent !important;
+}
+

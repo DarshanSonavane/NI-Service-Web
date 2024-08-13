@@ -12,7 +12,9 @@ export class LoadingIndicatorService {
         this.dialogRef = this.dialog.open(SpinningIndicatorComponent,{
             height:'auto',
             data:{},
-            disableClose : true
+            disableClose : true,
+            backdropClass: 'transparent-backdrop',
+            panelClass: 'spinner-dialog-panel',
         }) 
     }
 

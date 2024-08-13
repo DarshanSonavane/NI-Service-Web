@@ -8,6 +8,7 @@
                 <th>Customer Code</th>
                 <th>Customer Name</th>
                 <th>Machine Type</th>
+                <th>City/State</th>
                 <th>Status</th>
                 <th>Action</th>
                 <tr *ngFor="let complaint of complaintsList" style="text-align: center;" class="rowseparator">
@@ -16,6 +17,7 @@
                     <td (click)="openDetailsPopup(complaint)">{{ complaint['customerId'] ? complaint['customerId']['customerCode'] : '-' }}</td>
                     <td (click)="openDetailsPopup(complaint)">{{ complaint['customerId']['customerName'] ? complaint['customerId']['customerName'] : '-' }}</td>
                     <td (click)="openDetailsPopup(complaint)">{{ complaint['machineType'] == 0 ? 'Petrol' : 'Diesel' }}</td>
+                    <td (click)="openDetailsPopup(complaint)">{{ complaint['customerId'] && complaint['customerId']['city'] && complaint['customerId']['stateCode']  ? complaint['customerId']['city'] + ', ' + complaint['customerId']['stateCode'] : 'NA' }}</td>
                     <td (click)="openDetailsPopup(complaint)" [ngClass] = "complaint['status'] == 0 ? 'close' : 'assign'">{{ complaint['status'] == 0 ? 'Close' : 'Open' }}</td>
                     <td>
                         <button *ngIf="complaint['status'] == '1' && complaint['status'] !== '2'" mat-flat-button color="warn" (click)="assign(complaint,false)" class="assign-button" title="Assign"><img src="../../../assets/assign-icon.png" style="padding-top: 5px;"></button>

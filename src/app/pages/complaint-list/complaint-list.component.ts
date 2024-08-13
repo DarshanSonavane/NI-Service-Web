@@ -49,7 +49,7 @@ export class ComplaintListComponent {
       this.service.getAllComplaints(userDetails).subscribe((res : any)=>{
         this.loader.closeLoadingIndicator();
         this.complaintsList = res.data.filter((data:any)=> data.status == '1' || data.status == '2');
-        this.dataSource.data = this.complaintsList;
+        // this.dataSource.data = this.complaintsList;
         this.closeComplaintsList = res.data.filter((data:any)=> data.status == '0' || data.status == 0);
         this.excelData = this.prepareExcelData();
         /* if(res.data && res.data.length > 0){
