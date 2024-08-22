@@ -25,9 +25,9 @@ export class EmployeeCompliantListComponent {
       console.log("userDetails",userDetails)
       this.service.getAllComplaints(userDetails).subscribe((res : any)=>{
         this.loader.closeLoadingIndicator();
-        this.complaintsList = res.data.filter(data=> data.serviceRequestId.status == '1' || data.serviceRequestId.status == '2');
+        this.complaintsList = res.data.filter(data=> data.serviceRequestId?.status == '1' || data.serviceRequestId?.status == '2');
         console.log('complaintsList' , this.complaintsList);
-        this.closeComplaintsList = res.data.filter(data=> data.serviceRequestId.status == '0' || data.serviceRequestId.status == 0);
+        this.closeComplaintsList = res.data.filter(data=> data.serviceRequestId?.status == '0' || data.serviceRequestId?.status == 0);
       })
     }catch(err){
       console.log(err);
