@@ -20,6 +20,8 @@ export class AppComponent {
   employeeIconPath:string = '../assets/employees.png';
   customerIconPath:string = '../assets/customer.png';
   logoutIconPath:string = '../assets/logout.png';
+  calibrationPath:string = '../assets/calibration.png';
+  notificationPath:string = '../assets/bell.png';
   sidebarShow: boolean = false; 
   constructor(private router : Router , private toast : ToastrService , private dialog : MatDialog){
     this.router.navigate(['login']);
