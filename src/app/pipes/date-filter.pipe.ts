@@ -10,7 +10,8 @@ export class DateFilterPipe implements PipeTransform{
         if(value){
             const newDate = new Date(value);
             console.log("newDate",newDate);
-            const formattedDate = newDate.getDate() + " " + this.monthNames[newDate.getMonth()] + " " + newDate.getFullYear();
+            const month = newDate.getMonth() + 1;
+            const formattedDate = newDate.getDate() + "/" + month + "/" + newDate.getFullYear();
             return formattedDate;
         }else {
             return '-';

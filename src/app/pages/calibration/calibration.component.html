@@ -1,9 +1,10 @@
 <div class="container">
-    <div>
+    <!-- <div> -->
+        <mat-card style="margin: 20px;">
         <mat-tab-group class="tabs">
             <mat-tab label="Calibration Request">
-                <button mat-flat-button color="primary" class="cylinder-button" (click)="updateCylinderDetails()" *ngIf="userRole == 'ADMIN'">Cylinder Details</button>
-                <button mat-flat-button color="primary" class="cylinder-button" (click)="addMachineDetails()" *ngIf="userRole == 'ADMIN'">Add Machine</button>
+                <button mat-flat-button class="cylinder-button green" (click)="updateCylinderDetails()" *ngIf="userRole == 'ADMIN'">Cylinder Details</button>
+                <button mat-flat-button class="cylinder-button black" (click)="addMachineDetails()" *ngIf="userRole == 'ADMIN'">Add Machine</button>
                 <table class="table" *ngIf="formattedCalibrationData.length > 0">
                     <th>Requested Date</th>
                     <th>Customer Code</th>
@@ -22,8 +23,8 @@
                         <td>{{ calibration['customerId'] && calibration['customerId']['stateCode'] ? calibration['customerId']['stateCode'] : '-' }}</td>
                         <td [ngClass] = "calibration['status'] == 2 ? 'assign' : 'close'">{{ calibration['status'] == 2 ? 'Assigned' : 'Close' }}</td>
                         <td>
-                            <button *ngIf="calibration['status'] == '1' || calibration['status'] == '2'" mat-flat-button color="primary" style="margin-left: 10px;" (click)="generateCalibration(calibration)">Generate & Send</button>
-                            <button *ngIf="(calibration['status'] == '1' || calibration['status'] == '2') && userRole == 'ADMIN'" mat-flat-button color="primary" style="margin-left: 10px;" (click)="deleteCalibration(calibration)">Delete</button>
+                            <button *ngIf="calibration['status'] == '1' || calibration['status'] == '2'" mat-flat-button class="green" style="margin-left: 10px;" (click)="generateCalibration(calibration)">Generate & Send</button>
+                            <button *ngIf="(calibration['status'] == '1' || calibration['status'] == '2') && userRole == 'ADMIN'" mat-flat-button class="black" style="margin-left: 10px;" (click)="deleteCalibration(calibration)">Delete</button>
                         </td>
                     </tr>
                 </table>
@@ -42,7 +43,7 @@
                     <th>Assigned To</th>
                     <th>State</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th *ngIf="userRole == 'ADMIN'">Action</th>
                     <tr *ngFor="let calibration of closeFormattedCalibrationData" style="text-align: center;" class="rowseparator">
                         <td>{{ calibration['createdAt']  | dateFilter}}</td>
                         <td>{{ calibration['customerId'] ? calibration['customerId']['customerCode'] : '-' }}</td>
@@ -51,8 +52,8 @@
                         <td>{{ calibration['employeeId'] && calibration['employeeId']['employeeName'] ? calibration['employeeId']['employeeName'] : '-' }}</td>
                         <td>{{ calibration['customerId'] && calibration['customerId']['stateCode'] ? calibration['customerId']['stateCode'] : '-' }}</td>
                         <td [ngClass] = "calibration['status'] == 2 ? 'assign' : 'close'">{{ calibration['status'] == 2 ? 'Assigned' : 'Close' }}</td>
-                        <td>
-                            <button *ngIf="userRole == 'ADMIN'" mat-flat-button color="primary" style="margin-left: 10px;" (click)="deleteCalibration(calibration)">Delete</button>
+                        <td *ngIf="userRole == 'ADMIN'">
+                            <button mat-flat-button class="black" style="margin-left: 10px;" (click)="deleteCalibration(calibration)">Delete</button>
                         </td>
                     </tr>
                 </table>
@@ -62,5 +63,6 @@
                 </mat-card>
             </mat-tab>
         </mat-tab-group>
-    </div>
+    <!-- </div> -->
+</mat-card>
 </div>

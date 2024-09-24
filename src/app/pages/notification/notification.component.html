@@ -2,9 +2,9 @@
     <div>
         <mat-card class="assign-card">
             <mat-card-content>
-                <div>
+                <!-- <div>
                     <img width="200px" height="200px" src="../../../assets/NI_WEB.jpg"/>
-                </div>
+                </div> -->
                 <div> 
                     <div>
                         <h1 style="font-size: bold;">Notification</h1>
@@ -20,7 +20,7 @@
                               </mat-form-field>
                           
                         </div>
-                    <button [disabled]="!selectedFile" mat-flat-button color="primary" (click)="uploadFile()">Save & Close</button>
+                    <button [disabled]="!selectedFile" mat-flat-button class="green" (click)="uploadFile()">Save & Close</button>
                 </div>
             </mat-card-content>
         </mat-card>

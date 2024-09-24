@@ -1,0 +1,23 @@
+.assign-card{
+    width: 400px;
+   // display: flex;
+    //justify-content: center;
+   // text-align: center;
+}
+@media only screen and (max-width: 400px) {
+    .assign-card {width:100%;}
+}
+
+.green {background-color: #8DC641 !important; color:#fff !important; margin-left: 3%;}
+.black {background-color: #000 !important; color:#fff !important}
+
+h1 {
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal; 
+    text-align: center;
+}  
+.half-width {width: 44%; float: left; margin: 0 3%;}
+
+.full-width {width: 94%; float: left; margin: 0 3%;}

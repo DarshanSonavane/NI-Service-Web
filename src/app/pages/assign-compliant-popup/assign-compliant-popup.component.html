@@ -2,9 +2,9 @@
     <div>
         <mat-card class="assign-card">
             <mat-card-content>
-                <div>
+                <!-- <div>
                     <img width="200px" height="200px" src="../../../assets/NI_WEB.jpg"/>
-                </div>
+                </div> -->
                 <div> 
                     <div>
                         <h1 style="font-size: bold;">Assign Complaint</h1>
@@ -20,8 +20,8 @@
                             </mat-form-field>
                         </div>
                     </form>
-                    <button [disabled]="!selectedEmployee" mat-flat-button color="primary" (click)="assignComplaint()">Assign</button>
-                    <button style="margin-left: 10px;" mat-flat-button color="warn" (click)="closeDialog()">Close</button>
+                    <button [disabled]="!selectedEmployee" mat-flat-button class="green" (click)="assignComplaint()">Assign</button>
+                    <button style="margin-left: 10px;" mat-flat-button class="black" (click)="closeDialog()">Close</button>
                 </div>
             </mat-card-content>
         </mat-card>

@@ -2,9 +2,9 @@
     <div>
         <mat-card class="assign-card">
             <mat-card-content>
-                <div>
+                <!-- <div>
                     <img width="200px" height="200px" src="../../../assets/NI_WEB.jpg"/>
-                </div>
+                </div> -->
                 <div> 
                     <div>
                         <h1 style="font-size: bold;">Complaint Status</h1>
@@ -24,7 +24,7 @@
                             </mat-form-field>
                         </div>
                     </form>
-                    <button [disabled]="!statusForm.valid" mat-flat-button color="primary" (click)="updateStatusFeedback()">Save & Close</button>
+                    <button [disabled]="!statusForm.valid" mat-flat-button class="green" (click)="updateStatusFeedback()">Save & Close</button>
                 </div>
             </mat-card-content>
         </mat-card>
