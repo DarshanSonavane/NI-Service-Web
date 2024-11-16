@@ -159,4 +159,15 @@ tr:nth-child(even) {
     .right {width:90%; padding:0 5%;}
     .full-width {width:100%;}
 }
-.button-area {width:240px; margin: auto;}     
+.button-area {width:240px; margin: auto;}  
+
+.delete-icon {
+    cursor: pointer;
+    color: red;  /* Make the icon red to indicate it's a delete action */
+    font-size: 24px;  /* Adjust the size of the icon */
+    background: transparent !important
+  }
+  
+  .delete-icon:hover {
+    opacity: 0.7;  /* Add a hover effect to indicate interactivity */
+  }

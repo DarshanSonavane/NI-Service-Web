@@ -2,7 +2,7 @@
     <mat-tab-group class="tabs tab-active">
         <mat-tab label="All Complaints">
             <button *ngIf="complaintsList.length > 0" mat-flat-button class="downloadbutton" color="primary" style="margin-left: 10px;" (click)="exportExcel()"><img src="../../../assets/download.png" style="width:15px; margin-right: 5px;">Download</button>
-            <table class="table table-bordered table-hover dt-responsive" *ngIf="complaintsList.length > 0">
+            <table class="table table-bordered table-hover dt-responsive" *ngIf="openComplaintsList.length > 0">
                 <th>DOC</th>
                 <th>Cust Code</th>
                 <th>Cust Name</th>
@@ -12,7 +12,7 @@
                 <th>City/State</th>
                 <!-- <th>Status</th> -->
                 <th>Action</th>
-                <tr *ngFor="let complaint of complaintsList" style="text-align: center;" class="rowseparator">
+                <tr *ngFor="let complaint of openComplaintsList" style="text-align: center;" class="rowseparator">
                     <td (click)="openDetailsPopup(complaint)">{{ complaint['createdAt']  | dateFilter}}</td>
                     <td (click)="openDetailsPopup(complaint)">{{ complaint['customerId'] ? complaint['customerId']['customerCode'] : '-' }}</td>
                     <td (click)="openDetailsPopup(complaint)">{{ complaint['customerId']['customerName'] ? complaint['customerId']['customerName'] : '-' }}</td>
@@ -31,7 +31,7 @@
             <!-- ****************{{dataSource}}
             <app-shared-table [dataSource]="dataSource" [columnsdef]="columns" ></app-shared-table> -->
             
-            <mat-card *ngIf="complaintsList.length == 0">
+            <mat-card *ngIf="openComplaintsList.length == 0">
                 <h1>No Complaints Found!</h1> 
             </mat-card>
         </mat-tab>

@@ -14,7 +14,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class CustomersComponent implements AfterViewInit, OnInit{
   customerForm: FormGroup = new FormGroup({})
-  displayedColumns: string[] = ['customerCode', 'customerName', 'city', 'state', 'email' , 'phone' , 'gstNo' ,'amcDue' , 'petrolMachineNumber' , 'dieselMachineNumber' , 'comboMachineNumber'  ];
+  displayedColumns: string[] = ['customerCode', 'customerName', 'city', 'state', 'email' , 'phone' , 'gstNo' ,'amcDue' , 'petrolMachineNumber' , 'dieselMachineNumber' , 'comboMachineNumber' , 'actions'  ];
   dataSource :any ;
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -134,13 +134,20 @@ export class CustomersComponent implements AfterViewInit, OnInit{
   }
 
   onStateChange = (event)=>{
-    console.log("State Event",event);
     this.selectedStatecode = event;
   }
 
   onMachineTypeChange = (event)=>{
-    console.log("Machine Type" , event);
     this.selectedMachineType = event;
+  }
+
+  deleteCustomer = (element:any)=>{
+    let obj = {};
+    obj["customerId"] = element._id;
+    this.appService.deleteCustomerById(obj).subscribe((res:any)=>{
+      this.toast.success(res['message']);
+      this.getCustomerList();
+    })
   }
 }
 

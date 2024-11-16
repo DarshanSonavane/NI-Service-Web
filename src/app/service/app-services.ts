@@ -21,6 +21,18 @@ export class AppServices{
         return this.http.get(url);
     }
 
+    getAllOpenComplaints = () =>  {
+        let url = "";
+        url = this.BASE_URL + '/get-all-open-complaints';
+        return this.http.get(url);
+    }
+
+    getAllCloseComplaints = () =>  {
+        let url = "";
+        url = this.BASE_URL + '/get-all-close-complaints';
+        return this.http.get(url);
+    }
+
     /* getAllComplaints(userDetails:any) : Observable<Column[]>{
         let url = "";
         console.log("userDetails._id", userDetails._id , userDetails.role)
@@ -145,6 +157,11 @@ export class AppServices{
 
     deleteCalibrationById = (data : any)=>{
         let url = this.BASE_URL + '/delete-calibration-request';
+        return this.http.post(url,data);
+    }
+
+    deleteCustomerById = (data:any)=>{
+        let url = this.BASE_URL + '/delete-customer-by-id';
         return this.http.post(url,data);
     }
 }   

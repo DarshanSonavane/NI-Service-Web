@@ -15,6 +15,7 @@ import { ResetPasswordPopupComponent } from '../reset-password-popup/reset-passw
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({})
+  hide: boolean = true;
   constructor(private formBuilder : FormBuilder , private router : Router , private appService : AppServices , private toast : ToastrService , private loader : LoadingIndicatorService , private dialog : MatDialog , private cdrref : ChangeDetectorRef){
     console.log("Inside Login");
   }
@@ -76,5 +77,9 @@ export class LoginComponent implements OnInit {
     }catch(err){
       console.log(err);
     }
+  }
+
+  togglePasswordVisibility(){
+    this.hide = !this.hide;
   }
 }

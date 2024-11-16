@@ -63,3 +63,7 @@ form .mdc-text-field--filled {
     .mat-mdc-card-content {display: block;}
 }
 .mdc-text-field--filled:not(.mdc-text-field--disabled) {background-color: transparent !important;}
+
+mat-icon {
+    cursor: pointer;
+}

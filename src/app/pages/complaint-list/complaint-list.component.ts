@@ -24,7 +24,7 @@ export class ComplaintListComponent {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   excelData:any;
-
+  openComplaintsList = [];
   public dataSource = new MatTableDataSource();
 
   columns:Column[]=[
@@ -38,17 +38,43 @@ export class ComplaintListComponent {
   ]
 
   constructor(private service : AppServices , private dialog : MatDialog , private toast : ToastrService , private loader : LoadingIndicatorService){
-    this.userDetails  = localStorage.getItem('userDetails') ? localStorage.getItem('userDetails') : null
-    this.getAllComplaints(JSON.parse(this.userDetails));
+    this.userDetails  = localStorage.getItem('userDetails') ? JSON.parse(localStorage.getItem('userDetails')) : null;
+    if(this.userDetails.role == "0"){
+      this.getAllOpenComplaints(this.userDetails);
+      this.getAllCloseComplaints(this.userDetails);
+    }
+    this.getAllComplaints(this.userDetails);
+  }
+
+  getAllOpenComplaints = (userDetails : any) => {
+    try{
+      this.openComplaintsList = [];
+      this.service.getAllOpenComplaints().subscribe((res:any)=>{
+        this.openComplaintsList = res.data;
+      })
+    }catch(err){
+      console.log(err);
+    }
+  }
+
+  getAllCloseComplaints = (userDetails : any) => {
+    try{
+      this.closeComplaintsList = [];
+      this.service.getAllCloseComplaints().subscribe((res:any)=>{
+        this.closeComplaintsList = res.data;
+      })
+    }catch(err){
+      console.log(err);
+    }
   }
 
   getAllComplaints = (userDetails : any) => {
     try{
-      console.log("userDetails",userDetails)
       this.loader.showLoadingIndicator()
       this.service.getAllComplaints(userDetails).subscribe((res : any)=>{
         this.loader.closeLoadingIndicator();
-        this.complaintsList = res.data.filter((data:any)=> data.status == '1' || data.status == '2');
+        this.complaintsList = res.data;
+        this.openComplaintsList = res.data.filter((data:any)=> data.status == '1' || data.status == '2');
         // this.dataSource.data = this.complaintsList;
         this.closeComplaintsList = res.data.filter((data:any)=> data.status == '0' || data.status == 0);
         this.excelData = this.prepareExcelData();
