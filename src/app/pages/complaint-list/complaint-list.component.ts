@@ -108,7 +108,7 @@ export class ComplaintListComponent {
       }).afterClosed().subscribe((result : any)=>{
         // dialgoRef = undefined;
         if(result == 'assigned'){
-          this.getAllComplaints(JSON.parse(this.userDetails));
+          this.getAllComplaints(this.userDetails);
           this.dialog.closeAll();
         }
       });
@@ -120,14 +120,14 @@ export class ComplaintListComponent {
   closeServiceRequest = (complaint:any) =>{
     try{
       this.loader.showLoadingIndicator();
-      const user = JSON.parse(this.userDetails);
+      const user = this.userDetails;
       let data : any = {};
       data['employeeId'] = user._id;
       data['complaintId'] = complaint._id;
       this.service.closeComplaint(data).subscribe((res:any)=>{
         if(res){
           this.loader.closeLoadingIndicator();
-          this.getAllComplaints(JSON.parse(this.userDetails));
+          this.getAllComplaints(this.userDetails);
           this.toast.success("Service Request Closed Successfully!!");
         }
       })
@@ -145,7 +145,7 @@ export class ComplaintListComponent {
       }).afterClosed().subscribe((result : any)=>{
         // dialgoRef = undefined;
         if(result == 'close'){
-          this.getAllComplaints(JSON.parse(this.userDetails));
+          this.getAllComplaints(this.userDetails);
           this.dialog.closeAll();
         }
       });
