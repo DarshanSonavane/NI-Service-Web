@@ -1,7 +1,7 @@
 <div class="container">
     <!-- <div> -->
         <mat-card style="margin: 20px;">
-        <mat-tab-group class="tabs">
+        <mat-tab-group class="tabs" (selectedTabChange)="tabClick($event)">
             <mat-tab label="Calibration Request">
                 <button mat-flat-button class="cylinder-button green" (click)="updateCylinderDetails()" *ngIf="userRole == 'ADMIN'">Cylinder Details</button>
                 <button mat-flat-button class="cylinder-button black" (click)="addMachineDetails()" *ngIf="userRole == 'ADMIN'">Add Machine</button>

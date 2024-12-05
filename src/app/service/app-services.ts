@@ -164,4 +164,14 @@ export class AppServices{
         let url = this.BASE_URL + '/delete-customer-by-id';
         return this.http.post(url,data);
     }
+
+    getOpenCalibrationList = () =>{
+        let url = this.BASE_URL + '/get-open-calibration-request-list';
+        return this.http.get(url);
+    }
+
+    getCloseCalibrationList = () =>{
+        let url = this.BASE_URL + '/get-close-calibration-request-list';
+        return this.http.get(url);
+    }
 }   

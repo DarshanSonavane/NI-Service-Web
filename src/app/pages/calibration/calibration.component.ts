@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { CylinderDetailPopupComponent } from '../cylinder-detail-popup/cylinder-detail-popup.component';
 import { MachineModelDetailsComponent } from '../machine-model-details/machine-model-details.component';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-calibration',
@@ -19,18 +20,20 @@ export class CalibrationComponent {
   userRole:any;
   notificationList:any;
   closeFormattedCalibrationData:any = [];
-  constructor(private appService : AppServices , private toastService : ToastrService , private dialog : MatDialog){
+  constructor(private appService : AppServices , private toastService : ToastrService , private dialog : MatDialog , private loader : LoadingIndicatorService){
     this.getCalibrationList();
     this.userRole = localStorage.getItem("userRole");
   }
 
   getCalibrationList = () =>{
     try{
+      this.loader.showLoadingIndicator();
       const userRole = localStorage.getItem("userRole");
       const userDetails = localStorage.getItem('userDetails') ? JSON.parse(localStorage.getItem('userDetails')) : null;
       if(userRole == 'ADMIN'){
-        this.appService.getCalibrationList().subscribe(async (res:any)=>{
+        this.appService.getOpenCalibrationList().subscribe(async (res:any)=>{
           this.generateAndFormatCalibrationData(res.data);
+          this.loader.closeLoadingIndicator();
         })
       }else {
         let data = {
@@ -131,6 +134,21 @@ export class CalibrationComponent {
       })
     }catch(err){
       console.log(err);
+    }
+  }
+
+  tabClick=(event: MatTabChangeEvent)=>{
+    this.loader.showLoadingIndicator();
+    if(event.index == 0){
+      this.appService.getOpenCalibrationList().subscribe(async (res:any)=>{
+        this.generateAndFormatCalibrationData(res.data);
+        this.loader.closeLoadingIndicator();
+      })
+    }else if(event.index == 1) {
+      this.appService.getCloseCalibrationList().subscribe(async (res:any)=>{
+        this.generateAndFormatCalibrationData(res.data);
+        this.loader.closeLoadingIndicator();
+      })
     }
   }
 }
