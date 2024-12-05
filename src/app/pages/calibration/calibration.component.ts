@@ -41,6 +41,7 @@ export class CalibrationComponent {
         }
         this.appService.getMyCalibrationList(data).subscribe((res:any)=>{
           this.generateAndFormatCalibrationData(res.data);
+          this.loader.closeLoadingIndicator();
         })
       }
       
