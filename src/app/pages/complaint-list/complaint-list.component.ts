@@ -43,6 +43,7 @@ export class ComplaintListComponent {
       this.getAllOpenComplaints(this.userDetails);
       this.getAllCloseComplaints(this.userDetails);
     }
+
     this.getAllComplaints(this.userDetails);
   }
 
@@ -74,9 +75,9 @@ export class ComplaintListComponent {
       this.service.getAllComplaints(userDetails).subscribe((res : any)=>{
         this.loader.closeLoadingIndicator();
         this.complaintsList = res.data;
-        this.openComplaintsList = res.data.filter((data:any)=> data.status == '1' || data.status == '2');
+        //this.openComplaintsList = res.data.filter((data:any)=> data.status == '1' || data.status == '2');
         // this.dataSource.data = this.complaintsList;
-        this.closeComplaintsList = res.data.filter((data:any)=> data.status == '0' || data.status == 0);
+        // this.closeComplaintsList = res.data.filter((data:any)=> data.status == '0' || data.status == 0);
         this.excelData = this.prepareExcelData();
         /* if(res.data && res.data.length > 0){
           const rows = [];
@@ -100,6 +101,7 @@ export class ComplaintListComponent {
 
   assign = (complaint:any , isReAssign : any) =>{
     try{
+      console.log('complaint' , complaint);
       let dialgoRef = this.dialog.open(AssignCompliantPopupComponent , {
         data: {
           selectedServiceRequest : complaint._id,

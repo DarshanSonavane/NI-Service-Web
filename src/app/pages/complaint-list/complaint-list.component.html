@@ -15,7 +15,7 @@
                 <tr *ngFor="let complaint of openComplaintsList" style="text-align: center;" class="rowseparator">
                     <td (click)="openDetailsPopup(complaint)">{{ complaint['createdAt']  | dateFilter}}</td>
                     <td (click)="openDetailsPopup(complaint)">{{ complaint['customerId'] ? complaint['customerId']['customerCode'] : '-' }}</td>
-                    <td (click)="openDetailsPopup(complaint)">{{ complaint['customerId']['customerName'] ? complaint['customerId']['customerName'] : '-' }}</td>
+                    <td (click)="openDetailsPopup(complaint)">{{ complaint['customerId'] && complaint['customerId']['customerName'] ? complaint['customerId']['customerName'] : '-' }}</td>
                     <td (click)="openDetailsPopup(complaint)">{{ complaint['complaintType'] && complaint['complaintType']['name'] ? complaint['complaintType']['name'] : 'NA' }}</td>
                     <td (click)="openDetailsPopup(complaint)">{{ complaint['additionalReq'] ? complaint['additionalReq'] : 'NA'}}</td>
                     <td (click)="openDetailsPopup(complaint)">{{ complaint['machineType'] == 0 ? 'Petrol' : 'Diesel' }}</td>

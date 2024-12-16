@@ -11,7 +11,6 @@ export class AppServices{
 
     getAllComplaints = (userDetails : any) =>  {
         let url = "";
-        console.log("userDetails._id", userDetails._id , userDetails.role)
         if(userDetails.role == "0"){
             url = this.BASE_URL + '/get-all-complaints';
         }else {
@@ -172,6 +171,11 @@ export class AppServices{
 
     getCloseCalibrationList = () =>{
         let url = this.BASE_URL + '/get-close-calibration-request-list';
+        return this.http.get(url);
+    }
+
+    getMyAssignedComplaints = (userDetails : any) =>{
+        let url = this.BASE_URL + '/get-assigned-complaints?employeeId='+userDetails._id;
         return this.http.get(url);
     }
 }   

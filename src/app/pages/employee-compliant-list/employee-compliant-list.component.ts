@@ -22,12 +22,20 @@ export class EmployeeCompliantListComponent {
   getAllComplaints = (userDetails : any) => {
     try{
       this.loader.showLoadingIndicator();
-      console.log("userDetails",userDetails)
-      this.service.getAllComplaints(userDetails).subscribe((res : any)=>{
+      this.service.getMyAssignedComplaints(userDetails).subscribe((res : any)=>{
         this.loader.closeLoadingIndicator();
-        this.complaintsList = res.data.filter(data=> data.serviceRequestId?.status == '1' || data.serviceRequestId?.status == '2');
-        console.log('complaintsList' , this.complaintsList);
-        this.closeComplaintsList = res.data.filter(data=> data.serviceRequestId?.status == '0' || data.serviceRequestId?.status == 0);
+        if(res.data.length > 0){
+          for(let i = 0 ; i < res.data.length ; i++){
+            const d = res.data[i];
+            if(d.serviceRequestId && d.serviceRequestId.customerId && d.serviceRequestId.customerId.customerName){
+              if(d.serviceRequestId?.status == '1' || d.serviceRequestId?.status == '2'){
+                this.complaintsList.push(d);
+              }else if(d.serviceRequestId?.status == '0'){
+                this.closeComplaintsList.push(d);
+              }
+            }
+          }
+        }
       })
     }catch(err){
       console.log(err);

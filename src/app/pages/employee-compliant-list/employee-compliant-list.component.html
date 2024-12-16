@@ -10,18 +10,21 @@
                 <th>Machine Type</th>
                 <!-- <th>Status</th> -->
                 <th>Action</th>
-                <tr *ngFor="let complaint of complaintsList" style="text-align: center;" class="rowseparator">
-                    <td>{{ complaint['serviceRequestId']['createdAt']  | dateFilter}}</td>
-                    <td>{{ complaint['serviceRequestId']['customerId'] ? complaint['serviceRequestId']['customerId']['customerCode'] : '-' }}</td>
-                    <td>{{ complaint['serviceRequestId']['customerId']['customerName'] ? complaint['serviceRequestId']['customerId']['customerName'] : '-' }}</td>
-                    <td>{{ complaint['serviceRequestId'] && complaint['serviceRequestId']['complaintType'] && complaint['serviceRequestId']['complaintType']['name'] ? complaint['serviceRequestId']['complaintType']['name'] : 'NA' }}</td>
-                    <td>{{ complaint['additionalReq']}}</td>
-                    <td>{{ complaint['machineType'] == 0 ? 'Petrol' : 'Diesel' }}</td>
-                    <!-- <td [ngClass] = "complaint['serviceRequestId']['status'] == 0 ? 'close' : 'assign'">{{ complaint['serviceRequestId']['status'] == 0 ? 'Close' : 'Open' }}</td> -->
-                    <td *ngIf="complaint['serviceRequestId']['status'] !== '0'">
-                        <button mat-flat-button class="reassign-button" title="Re-Assign" color="primary" style="margin-left: 10px;" (click)="showTakeActionPopup(complaint)">Take Action</button>
-                    </td>
-                </tr>
+                <ng-container *ngFor="let complaint of complaintsList">
+                    <tr *ngIf="complaint['serviceRequestId']"  style="text-align: center;" class="rowseparator">
+                        <td>{{ complaint['serviceRequestId']['createdAt']  | dateFilter}}</td>
+                        <td>{{ complaint['serviceRequestId']['customerId'] ? complaint['serviceRequestId']['customerId']['customerCode'] : '-' }}</td>
+                        <td>{{ complaint['serviceRequestId'] && complaint['serviceRequestId']['customerId']['customerName'] ? complaint['serviceRequestId']['customerId']['customerName'] : '-' }}</td>
+                        <td>{{ complaint['serviceRequestId'] && complaint['serviceRequestId']['complaintType'] && complaint['serviceRequestId']['complaintType']['name'] ? complaint['serviceRequestId']['complaintType']['name'] : 'NA' }}</td>
+                        <td>{{ complaint['additionalReq']}}</td>
+                        <td>{{ complaint['machineType'] == 0 ? 'Petrol' : 'Diesel' }}</td>
+                        <!-- <td [ngClass] = "complaint['serviceRequestId']['status'] == 0 ? 'close' : 'assign'">{{ complaint['serviceRequestId']['status'] == 0 ? 'Close' : 'Open' }}</td> -->
+                        <td *ngIf="complaint['serviceRequestId']['status'] !== '0'">
+                            <button mat-flat-button class="reassign-button" title="Re-Assign" color="primary" style="margin-left: 10px;" (click)="showTakeActionPopup(complaint)">Take Action</button>
+                        </td>
+                    </tr>
+                </ng-container>
+                
             </table>
             <mat-card *ngIf="complaintsList.length == 0">
                 <h1>No Complaints Found!</h1> 
@@ -38,15 +41,18 @@
                 <th>Machine Type</th>
                 <!-- <th>Status</th> -->
                 <!-- <th>Action</th> -->
-                <tr *ngFor="let complaint of closeComplaintsList" style="text-align: center;" class="rowseparator">
-                    <td>{{ complaint['serviceRequestId']['createdAt']  | dateFilter}}</td>
-                    <td>{{ complaint['serviceRequestId']['customerId'] ? complaint['serviceRequestId']['customerId']['customerCode'] : '-' }}</td>
-                    <td>{{ complaint['serviceRequestId']['customerId']['customerName'] ? complaint['serviceRequestId']['customerId']['customerName'] : '-' }}</td>
-                    <td>{{ complaint['serviceRequestId'] && complaint['serviceRequestId']['complaintType'] && complaint['serviceRequestId']['complaintType']['name'] ? complaint['serviceRequestId']['complaintType']['name'] : 'NA' }}</td>
-                    <td>{{ complaint['additionalReq']}}</td>
-                    <td>{{ complaint['machineType'] == 0 ? 'Petrol' : 'Diesel' }}</td>
-                    <!-- <td [ngClass] = "complaint['serviceRequestId']['status'] == 0 ? 'close' : 'assign'">{{ complaint['serviceRequestId']['status'] == 0 ? 'Close' : 'Open' }}</td> -->
-                </tr>
+                <ng-container *ngFor="let complaint of closeComplaintsList">
+                    <tr *ngIf="complaint['serviceRequestId']"  style="text-align: center;" class="rowseparator">
+                        <td>{{ complaint['serviceRequestId']['createdAt']  | dateFilter}}</td>
+                        <td>{{ complaint['serviceRequestId']['customerId'] ? complaint['serviceRequestId']['customerId']['customerCode'] : '-' }}</td>
+                        <td>{{ complaint['serviceRequestId'] && complaint['serviceRequestId']['customerId']['customerName'] ? complaint['serviceRequestId']['customerId']['customerName'] : '-' }}</td>
+                        <td>{{ complaint['serviceRequestId'] && complaint['serviceRequestId']['complaintType'] && complaint['serviceRequestId']['complaintType']['name'] ? complaint['serviceRequestId']['complaintType']['name'] : 'NA' }}</td>
+                        <td>{{ complaint['additionalReq']}}</td>
+                        <td>{{ complaint['machineType'] == 0 ? 'Petrol' : 'Diesel' }}</td>
+                        <!-- <td [ngClass] = "complaint['serviceRequestId']['status'] == 0 ? 'close' : 'assign'">{{ complaint['serviceRequestId']['status'] == 0 ? 'Close' : 'Open' }}</td> -->
+                    </tr>
+                </ng-container>
+                
             </table>
             <mat-card *ngIf="closeComplaintsList.length == 0">
                 <h1>Service Request Is Yet To Closed By You!</h1> 
