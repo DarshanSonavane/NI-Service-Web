@@ -22,6 +22,7 @@ export class AppComponent {
   logoutIconPath:string = '../assets/logout.png';
   calibrationPath:string = '../assets/calibration.png';
   notificationPath:string = '../assets/bell.png';
+  amcPath:string = '../assets/calendar.png'
   sidebarShow: boolean = false; 
   constructor(private router : Router , private toast : ToastrService , private dialog : MatDialog){
     this.router.navigate(['login']);
@@ -118,6 +119,16 @@ export class AppComponent {
       }
     }catch(err){
       console.log(err);
+    }
+  }
+
+  goToAMC = () =>{
+    this.sidebarShow = !this.sidebarShow;
+    this.userRole = localStorage.getItem("userRole");
+    if(this.userRole == "ADMIN"){
+      this.router.navigateByUrl("/amc");
+    }else {
+      this.toast.error("You don't have permission to access Customers!")
     }
   }
 }

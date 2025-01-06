@@ -84,29 +84,30 @@ export class CalibrationComponent {
     try{
       this.formattedCalibrationData = [];
       this.closeFormattedCalibrationData = [];
-          this.calibrationData = data;
-          for(let i = 0 ; i < this.calibrationData.length ; i++){
-              let d = this.calibrationData[i];
-              if(d.machineType === '0'){
-                  d['machinTypeValue'] = "Petrol";
-              }else if(d.machineType === '1'){
-                  d['machinTypeValue'] = "Diesel";
-              }else if(d.machineType === '2'){
-                  d['machinTypeValue'] = "Combo";
-              }
-  
-              if(d['employeeId']){
-                d['employeeId']['employeeName'] = d['employeeId']['firstName'] + ' ' +d['employeeId']['lastName'];
-              }
-              console.log('here2' , d);
-
-              if(d.status == '1'|| d.status == '2'){
-                this.formattedCalibrationData.push(d);
-              }else {
-                this.closeFormattedCalibrationData.push(d);
-              }
-              
+      this.calibrationData = data;
+      for(let i = 0 ; i < this.calibrationData.length ; i++){
+        let d = this.calibrationData[i];
+        if(d.customerId){
+          if(d.machineType === '0'){
+            d['machinTypeValue'] = "Petrol";
+          }else if(d.machineType === '1'){
+            d['machinTypeValue'] = "Diesel";
+          }else if(d.machineType === '2'){
+            d['machinTypeValue'] = "Combo";
           }
+    
+          if(d['employeeId']){
+            d['employeeId']['employeeName'] = d['employeeId']['firstName'] + ' ' +d['employeeId']['lastName'];
+          }
+          console.log('here2' , d);
+  
+          if(d.status == '1'|| d.status == '2'){
+            this.formattedCalibrationData.push(d);
+          }else {
+            this.closeFormattedCalibrationData.push(d);
+          }
+        }      
+      }
     }catch(err){
       console.log(err);
     }

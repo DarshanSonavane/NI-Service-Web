@@ -178,4 +178,14 @@ export class AppServices{
         let url = this.BASE_URL + '/get-assigned-complaints?employeeId='+userDetails._id;
         return this.http.get(url);
     }
+
+    getAllOpenAMCRequest = ()=>{
+        let url = this.BASE_URL + '/get-all-open-amc-request';
+        return this.http.get(url);
+    }
+
+    getAllCloseAMCRequest = ()=>{
+        let url = this.BASE_URL + '/get-all-close-amc-request';
+        return this.http.get(url);
+    }
 }   

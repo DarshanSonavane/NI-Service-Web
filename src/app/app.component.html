@@ -352,6 +352,10 @@
           <span style="margin-left: 20px;font-weight: bold;" (click)="goToNotification()">Notification</span>
         </div>
         <div class="row drawer-content">
+          <img [src]="amcPath" class="sidemenu-icons"/>
+          <span style="margin-left: 20px;font-weight: bold;" (click)="goToAMC()">AMC</span>
+        </div>
+        <div class="row drawer-content">
           <img [src]="logoutIconPath" class="sidemenu-icons"/>
           <span style="margin-left: 20px;font-weight: bold;" (click)="logout()">Logout</span>
         </div>

@@ -1,0 +1,94 @@
+.table {
+    width: 100%;
+}
+.container{
+   // display: flex;
+   // justify-content: center;
+   // align-items: center;
+    min-height: 100vh;
+    background-color: #E5E5E5;
+    margin-top: 60px;
+    padding: 20px;
+    height: auto;;
+}
+::ng-deep .mat-toolbar{
+    z-index: 998;
+    position: relative,
+  }
+  ::ng-deep .mat-tab-group{
+    margin-top:55px ;
+  }
+  
+  ::ng-deep .mat-tab-header{
+        z-index: 999;
+        width:100vw;
+        position: relative  !important;
+        background-color: red !important;
+  }
+  ::ng-deep .mat-tab-body-wrapper{
+      position: relative !important;
+      margin-top:55px;
+  }
+  ::ng-deep .mat-mdc-tab-label-container{
+      margin: 10px;
+  } 
+
+.tabs{
+    margin: 10px;
+}
+
+.rowseparator{
+    border-bottom: 1px solid #AFAFAF;
+    height: 50px;
+}
+.table .tr{
+    border-bottom: 1px solid #AFAFAF;
+    height: 50px;
+}
+
+.assign {
+    color: red;
+    font-weight: bold;
+}
+
+.close {
+    color: green;
+    font-weight: bold;
+}
+
+.cylinder-button{
+    margin: 5px;
+    float: right;
+}
+
+table, th, td {
+    border: 1px solid #AFAFAF;
+    border-collapse: collapse;
+    word-break: break-all;
+  }
+  //table { margin: 2%;}
+  table th {padding:5px; font-weight: bold;}
+  table td {padding:5px;} 
+  
+  table caption {
+    padding: .5em 0;
+}
+
+table.dataTable th,
+table.dataTable td {
+  white-space: nowrap;
+}
+.green {background-color: #8ec840 !important; color:#fff !important}
+.black {background-color: #000 !important; color:#fff !important}
+
+@media screen and (max-width:480px){
+    .mat-mdc-unelevated-button.mat-mdc-button-base {height: auto !important; padding: 10px 5px;} 
+}
+
+.container{
+    flex: 1 0 auto;
+    background: #E5E5E5;
+    padding:30px 0;
+    margin-top: 30px;
+    height: 100%;
+}

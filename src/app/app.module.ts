@@ -42,6 +42,7 @@ import { MachineModelDetailsComponent } from './pages/machine-model-details/mach
 import { NotificationComponent } from './pages/notification/notification.component';
 import { MatListModule } from '@angular/material/list';
 import { SharedTableComponent } from './pages/shared-table/shared-table.component';
+import { AmcComponent } from './pages/amc/amc.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { SharedTableComponent } from './pages/shared-table/shared-table.componen
     CylinderDetailPopupComponent,
     MachineModelDetailsComponent,
     NotificationComponent,
-    SharedTableComponent
+    SharedTableComponent,
+    AmcComponent
   ],
   imports: [
     BrowserModule,
