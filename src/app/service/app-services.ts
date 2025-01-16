@@ -188,4 +188,9 @@ export class AppServices{
         let url = this.BASE_URL + '/get-all-close-amc-request';
         return this.http.get(url);
     }
+
+    generateAndSendAMCRequest = (data:any) =>{
+        let url = this.BASE_URL + '/generate-send-amc';
+        return this.http.post(url,data);
+    }
 }   

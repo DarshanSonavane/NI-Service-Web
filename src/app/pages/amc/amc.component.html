@@ -17,12 +17,12 @@
                         <td>{{ amc['customerId'] ? amc['customerId']['customerCode'] : '-' }}</td>
                         <td>{{ amc['customerId']['customerName'] ? amc['customerId']['customerName'] : '-' }}</td>
                         <td>{{ amc['machinTypeValue'] }}</td>
-                        <td>{{ amc['employeeId'] && amc['employeeId']['employeeName'] ? amc['employeeId']['employeeName'] : '-' }}</td>
+                        <td>{{ amc['customerId'] && amc['customerId']['city'] ? amc['customerId']['city'] : '-' }}</td>
                         <td>{{ amc['customerId'] && amc['customerId']['stateCode'] ? amc['customerId']['stateCode'] : '-' }}</td>
                         <td [ngClass] = "amc['status'] == 1 ? 'open' : 'close'">{{ amc['status'] == 0 ? 'Close' : 'Open' }}</td>
                         <td>
                             <button *ngIf="amc['status'] == '1'" mat-flat-button class="green" style="margin-left: 10px;" (click)="generateAMC(amc)">Generate & Send</button>
-                            <button *ngIf="userRole == 'ADMIN'" mat-flat-button class="black" style="margin-left: 10px;" (click)="deleteAMC(amc)">Delete</button>
+                            <!-- <button *ngIf="userRole == 'ADMIN'" mat-flat-button class="black" style="margin-left: 10px;" (click)="deleteAMC(amc)">Delete</button> -->
                         </td>
                     </tr>
                 </table>
@@ -47,7 +47,7 @@
                         <td>{{ amc['customerId'] ? amc['customerId']['customerCode'] : '-' }}</td>
                         <td>{{ amc['customerId']['customerName'] ? amc['customerId']['customerName'] : '-' }}</td>
                         <td>{{ amc['machinTypeValue'] }}</td>
-                        <td>{{ amc['employeeId'] && amc['employeeId']['employeeName'] ? amc['employeeId']['employeeName'] : '-' }}</td>
+                        <td>{{ amc['customerId'] && amc['customerId']['city'] ? amc['customerId']['city'] : '-' }}</td>
                         <td>{{ amc['customerId'] && amc['customerId']['stateCode'] ? amc['customerId']['stateCode'] : '-' }}</td>
                         <td [ngClass] = "amc['status'] == 0 ? 'close' : 'open'">{{ amc['status'] == 0 ? 'Close' : 'Open' }}</td>
                         <td *ngIf="userRole == 'ADMIN'">

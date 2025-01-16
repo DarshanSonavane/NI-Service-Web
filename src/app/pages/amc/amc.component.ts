@@ -60,8 +60,22 @@ export class AmcComponent {
     }
   }
 
-  generateAMC=(amc:any)=>{
-
+  generateAMC=(amcData:any)=>{
+    try{
+      this.loader.showLoadingIndicator();
+      let data = {}
+      data['amcId'] = amcData['_id'];
+      data['customerId'] = amcData['customerId']['_id'];
+      data['amcType'] = amcData['amcType'];
+      this.appService.generateAndSendAMCRequest(data).subscribe((res:any)=>{
+        if(res){
+          this.loader.closeLoadingIndicator();
+          this.getOpenAMCRequest();
+        }
+      })
+    }catch(err){
+      console.log(err);
+    }
   }
 
   deleteAMC = (amc:any) =>{
@@ -76,11 +90,11 @@ export class AmcComponent {
       for(let i = 0 ; i < this.amcData.length ; i++){
         let d = this.amcData[i];
         if(d.customerId){
-          if(d.machineType === '0'){
+          if(d.amcType === '0'){
             d['machinTypeValue'] = "Petrol";
-          }else if(d.machineType === '1'){
+          }else if(d.amcType === '1'){
             d['machinTypeValue'] = "Diesel";
-          }else if(d.machineType === '2'){
+          }else if(d.amcType === '2'){
             d['machinTypeValue'] = "Combo";
           }else {
             d['machinTypeValue'] = "-";

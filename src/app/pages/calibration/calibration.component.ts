@@ -99,8 +99,6 @@ export class CalibrationComponent {
           if(d['employeeId']){
             d['employeeId']['employeeName'] = d['employeeId']['firstName'] + ' ' +d['employeeId']['lastName'];
           }
-          console.log('here2' , d);
-  
           if(d.status == '1'|| d.status == '2'){
             this.formattedCalibrationData.push(d);
           }else {
@@ -141,16 +139,37 @@ export class CalibrationComponent {
 
   tabClick=(event: MatTabChangeEvent)=>{
     this.loader.showLoadingIndicator();
+    const userDetails = localStorage.getItem('userDetails') ? JSON.parse(localStorage.getItem('userDetails')) : null;
     if(event.index == 0){
-      this.appService.getOpenCalibrationList().subscribe(async (res:any)=>{
-        this.generateAndFormatCalibrationData(res.data);
-        this.loader.closeLoadingIndicator();
-      })
+      if(this.userRole == 'ADMIN'){
+        this.appService.getOpenCalibrationList().subscribe(async (res:any)=>{
+          this.generateAndFormatCalibrationData(res.data);
+          this.loader.closeLoadingIndicator();
+        })
+      }else {
+        let data = {
+          "employeeId" : userDetails['_id']
+        }
+        this.appService.getMyCalibrationList(data).subscribe((res:any)=>{
+          this.generateAndFormatCalibrationData(res.data);
+          this.loader.closeLoadingIndicator();
+        })
+      }
     }else if(event.index == 1) {
-      this.appService.getCloseCalibrationList().subscribe(async (res:any)=>{
-        this.generateAndFormatCalibrationData(res.data);
-        this.loader.closeLoadingIndicator();
-      })
+      if(this.userRole == 'ADMIN'){
+        this.appService.getCloseCalibrationList().subscribe(async (res:any)=>{
+          this.generateAndFormatCalibrationData(res.data);
+          this.loader.closeLoadingIndicator();
+        })
+      }else {
+        let data = {
+          "employeeId" : userDetails['_id']
+        }
+        this.appService.getMyCalibrationList(data).subscribe((res:any)=>{
+          this.generateAndFormatCalibrationData(res.data);
+          this.loader.closeLoadingIndicator();
+        })
+      }
     }
   }
 }
